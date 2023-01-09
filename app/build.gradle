@@ -50,15 +50,22 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 testlogger {
     showStandardStreams true
 }
 
+jacoco {
+    toolVersion = "0.8.8"
+}
 jacocoTestReport {
+    dependsOn test
     reports {
         xml.required = true
+        csv.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
 
