@@ -13,7 +13,6 @@
 * Генерация отчета в виде plain text, stylish и json
 
 Пример использования:
-
 ```# формат plain
 ./app --format plain path/to/file.yml another/path/file.json
 
@@ -32,4 +31,6 @@ Property 'group2' was removed
 - setting3: true
 + setting3: {key=value}
 + setting4: blah blah
-  }```
+  }
+```
+[Сравнение плоских JSON файлов](https://asciinema.org/a/LUsXwa9UOAeknKifSWHzCJRbQ)
