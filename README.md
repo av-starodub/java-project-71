@@ -3,6 +3,7 @@
 [![Actions Status](https://github.com/av-starodub/java-project-71/workflows/hexlet-check/badge.svg)](https://github.com/av-starodub/java-project-71/actions)
 [![Java CI](https://github.com/av-starodub/java-project-71/actions/workflows/javaci.yml/badge.svg)](https://github.com/av-starodub/java-project-71/actions/workflows/javaci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1bab56c13d765ad0e2a8/maintainability)](https://codeclimate.com/github/av-starodub/java-project-71/maintainability)
+[![codecov](https://codecov.io/gh/av-starodub/java-project-71/branch/main/graph/badge.svg?token=XGDU7QTSQJ)](https://codecov.io/gh/av-starodub/java-project-71)
 
 ### Описание
 
