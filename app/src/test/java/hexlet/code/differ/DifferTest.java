@@ -2,12 +2,19 @@ package hexlet.code.differ;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DifferTest {
+    private static final String RESOURCES_FIXTURES = new File("src/test/resources/fixtures").getAbsolutePath();
+
+    private String getTestFile(String fileName) {
+        return String.format("%s/%s", RESOURCES_FIXTURES, fileName);
+    }
+
     @Test
     public void shouldCorrectToShowDifferenceBetweenTwoFlatJsonFiles() throws IOException {
         String expected = """
@@ -19,7 +26,7 @@ public class DifferTest {
                   + timeout: 20
                   + verbose: true
                 }""";
-        String actual = Differ.generate("testfiles/flatJson1.json", "testfiles/flatJson2.json");
+        String actual = Differ.generate(getTestFile("flatJson1.json"), getTestFile("flatJson2.json"));
         assertThat(actual).isEqualTo(expected);
     }
 
