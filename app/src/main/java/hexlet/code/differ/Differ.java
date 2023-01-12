@@ -1,12 +1,10 @@
 package hexlet.code.differ;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import hexlet.code.parser.Parser;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -14,12 +12,7 @@ import java.util.TreeSet;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2) throws IOException {
-        return genDiff(parseToMap(getFile(filePath1)), parseToMap(getFile(filePath2)));
-    }
-
-    public static Map<String, Object> parseToMap(File file) throws IOException {
-        return new ObjectMapper().readValue(file, new TypeReference<HashMap<String, Object>>() {
-        });
+        return genDiff(Parser.parseToMap(getFile(filePath1)), Parser.parseToMap(getFile(filePath2)));
     }
 
     private static String genDiff(Map<String, Object> data1, Map<String, Object> data2) {
