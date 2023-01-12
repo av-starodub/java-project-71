@@ -13,35 +13,53 @@ public class DifferTest {
     public static final String ABSOLUTE_PATH = new File(RELATIVE_PATH).getAbsolutePath();
     private final String expectedDifference = """
             {
-              - follow: false
-                host: hexlet.io
-              - proxy: 123.234.53.22
-              - timeout: 50
-              + timeout: 20
-              + verbose: true
+                chars1: [a, b, c]
+              - chars2: [d, e, f]
+              + chars2: false
+              - checked: false
+              + checked: true
+              - default: null
+              + default: [value1, value2]
+              - id: 45
+              + id: null
+              - key1: value1
+              + key2: value2
+                numbers1: [1, 2, 3, 4]
+              - numbers2: [2, 3, 4, 5]
+              + numbers2: [22, 33, 44, 55]
+              - numbers3: [3, 4, 5]
+              + numbers4: [4, 5, 6]
+              + obj1: {nestedKey=value, isNested=true}
+              - setting1: Some value
+              + setting1: Another value
+              - setting2: 200
+              + setting2: 300
+              - setting3: true
+              + setting3: none
             }""";
 
     private String createPath(String path, String fileName) {
         return String.format("%s/%s", path, fileName);
     }
+
     @Test
     public void isDifferClassExist() {
         assertThat(Differ.class).isNotNull();
     }
 
     @Test
-    public void shouldCorrectCompareTwoFlatJsonFiles() throws IOException {
+    public void shouldCorrectCompareTwoJsonFiles() throws IOException {
         String actual = Differ.generate(
-                createPath(ABSOLUTE_PATH, "flatJson1.json"),
-                createPath(RELATIVE_PATH, "flatJson2.json"));
+                createPath(ABSOLUTE_PATH, "json1.json"),
+                createPath(RELATIVE_PATH, "json2.json"));
         assertThat(actual).isEqualTo(expectedDifference);
     }
 
     @Test
-    public void shouldCorrectCompareTwoFlatYamlFiles() throws IOException {
+    public void shouldCorrectCompareTwoYamlFiles() throws IOException {
         String actual = Differ.generate(
-                createPath(RELATIVE_PATH, "flatYaml1.yml"),
-                createPath(ABSOLUTE_PATH, "flatYaml2.yml"));
+                createPath(RELATIVE_PATH, "yaml1.yml"),
+                createPath(ABSOLUTE_PATH, "yaml2.yml"));
         assertThat(actual).isEqualTo(expectedDifference);
     }
 

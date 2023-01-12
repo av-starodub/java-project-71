@@ -10,7 +10,10 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Differ {
+public final class Differ {
+    private Differ() {
+    }
+
     public static String generate(String filePath1, String filePath2) throws IOException {
         return genDiff(Parser.parseToMap(getFile(filePath1)), Parser.parseToMap(getFile(filePath2)));
     }
@@ -18,12 +21,17 @@ public class Differ {
     private static String genDiff(Map<String, Object> data1, Map<String, Object> data2) {
         var diff = new StringBuilder();
         diff.append("{\n");
-        getUniqueKeys(data1, data2).forEach(key -> addDiff(diff, key, data1.get(key), data2.get(key)));
+        getUniqueKeys(data1, data2).forEach(key -> addString(diff, key, getValue(data1, key), getValue(data2, key)));
         diff.append("}");
         return diff.toString();
     }
 
-    private static void addDiff(StringBuilder diff, String key, Object value1, Object value2) {
+    private static Object getValue(Map<String, Object> data, String key) {
+        var value = data.get(key);
+        return data.containsKey(key) && Objects.isNull(value) ? "null" : value;
+    }
+
+    private static void addString(StringBuilder diff, String key, Object value1, Object value2) {
         if (Objects.isNull(value1)) {
             add(diff, "+", key, value2);
             return;

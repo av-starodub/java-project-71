@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Parser {
+public final class Parser {
+    private Parser() {
+    }
+
     public static Map<String, Object> parseToMap(File file) throws IOException {
         return new ObjectMapper().readValue(file, new TypeReference<HashMap<String, Object>>() {
         });
