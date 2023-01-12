@@ -34,4 +34,5 @@ Property 'group2' was removed
 + setting4: blah blah
   }
 ```
-[Сравнение плоских JSON файлов](https://asciinema.org/a/LUsXwa9UOAeknKifSWHzCJRbQ)
+* [Сравнение плоских JSON файлов](https://asciinema.org/a/WIyMf6ecnR1e76KhhAKMWe7Re)
+* [Сравнение плоских YAML файлов](https://asciinema.org/a/D49deP7Gxol9MKTuvCSPm56pV)
