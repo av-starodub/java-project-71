@@ -14,14 +14,12 @@ import java.util.TreeSet;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2) throws IOException {
-        return genDiff(comvertJsonToMap(getFile(filePath1)), comvertJsonToMap(getFile(filePath2)));
+        return genDiff(parseToMap(getFile(filePath1)), parseToMap(getFile(filePath2)));
     }
 
-    public static Map<String, Object> comvertJsonToMap(File json) throws IOException {
-        var mapper = new ObjectMapper();
-        TypeReference<HashMap<String, Object>> typeRef = new TypeReference<>() {
-        };
-        return mapper.readValue(json, typeRef);
+    public static Map<String, Object> parseToMap(File file) throws IOException {
+        return new ObjectMapper().readValue(file, new TypeReference<HashMap<String, Object>>() {
+        });
     }
 
     private static String genDiff(Map<String, Object> data1, Map<String, Object> data2) {
@@ -54,7 +52,7 @@ public class Differ {
     }
 
     private static File getFile(String path) {
-        return new File(path);
+        return new File(new File(path).getAbsolutePath());
     }
 
     public static Set<String> getUniqueKeys(Map<String, Object> map1, Map<String, Object> map2) {
