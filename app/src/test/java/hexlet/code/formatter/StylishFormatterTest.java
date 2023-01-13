@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class StylishFormatterTest {
-    private final StylishFormatter formatter = new StylishFormatter();
     @Test
     public void shouldFormatAddedProperty() {
         var prop = Property.builder()
@@ -49,7 +48,7 @@ public class StylishFormatterTest {
                 .oldValue("old")
                 .newValue("new")
                 .build();
-        var actual = formatter.format(new StringBuilder(), prop).toString();
+        var actual = new StylishFormatter().format(new StringBuilder(), prop).toString();
         var expected = "  - key: old\n  + key: new\n";
         assertThat(actual).isEqualTo(expected);
     }
