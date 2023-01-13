@@ -44,7 +44,7 @@ public class StylishFormatterTest {
     public void shouldFormatChangedProperty() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.CHANGED)
+                .status(Status.UPDATED)
                 .oldValue("old")
                 .newValue("new")
                 .build();

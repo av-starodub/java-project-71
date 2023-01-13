@@ -21,7 +21,7 @@ public final class StylishFormatter implements Formatter {
             case UNCHANGED -> {
                 return sb.append(String.format(template, " ", prop.getName(), prop.getOldValue()));
             }
-            case CHANGED -> {
+            case UPDATED -> {
                 return sb
                         .append(String.format(template, "-", prop.getName(), prop.getOldValue()))
                         .append(String.format(template, "+", prop.getName(), prop.getNewValue()));

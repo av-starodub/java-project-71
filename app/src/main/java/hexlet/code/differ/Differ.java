@@ -65,7 +65,7 @@ public final class Differ {
         if (oldValue.equals(newValue)) {
             return Status.UNCHANGED;
         }
-        return Status.CHANGED;
+        return Status.UPDATED;
     }
 
     private static Object getValue(Map<String, Object> data, String key) {

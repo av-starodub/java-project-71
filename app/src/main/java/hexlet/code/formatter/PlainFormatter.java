@@ -22,7 +22,7 @@ public final class PlainFormatter implements Formatter {
             case UNCHANGED -> {
                 return sb;
             }
-            case CHANGED -> {
+            case UPDATED -> {
                 return sb.append(String.format(
                         "Property '%s' was updated. From %s to %s\n",
                         prop.getName(),

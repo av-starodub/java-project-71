@@ -16,13 +16,13 @@ public class PresentationBuilderTest {
         var properties = new ArrayDeque<Property>();
         properties.addLast(Property.builder()
                 .name("array")
-                .status(Status.CHANGED)
+                .status(Status.UPDATED)
                 .oldValue(Arrays.asList(1, 2, 3))
                 .newValue(Arrays.asList(2, 3))
                 .build());
         properties.addLast(Property.builder()
                 .name("object")
-                .status(Status.CHANGED)
+                .status(Status.UPDATED)
                 .oldValue("{key1=10, key2=\"str\"}")
                 .newValue("{key1=1}")
                 .build());

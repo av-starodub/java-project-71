@@ -47,7 +47,7 @@ public class PlainFormatterTest {
     public void shouldFormatChangedProperty() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.CHANGED)
+                .status(Status.UPDATED)
                 .oldValue("none")
                 .newValue(true)
                 .build();
@@ -59,7 +59,7 @@ public class PlainFormatterTest {
     public void shouldFormatChangedPropertyWithNull() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.CHANGED)
+                .status(Status.UPDATED)
                 .oldValue("null")
                 .newValue(Map.of("k1", "v1"))
                 .build();
