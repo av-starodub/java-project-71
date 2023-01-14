@@ -2,6 +2,7 @@ package hexlet.code.differ;
 
 import hexlet.code.builder.PresentationBuilder;
 import hexlet.code.formatter.Formatter;
+import hexlet.code.formatter.PlainFormatter;
 import hexlet.code.formatter.StylishFormatter;
 import hexlet.code.parser.Parser;
 import hexlet.code.property.Property;
@@ -34,6 +35,9 @@ public final class Differ {
     private static Formatter getFormatter(String presentationFormat) {
         if ("stylish".equals(presentationFormat)) {
             return new StylishFormatter();
+        }
+        if ("plain".equals(presentationFormat)) {
+            return new PlainFormatter();
         }
         throw new RuntimeException();
     }
@@ -77,7 +81,7 @@ public final class Differ {
         return new File(new File(path).getAbsolutePath());
     }
 
-    public static Set<String> getUniqueKeys(Map<String, Object> map1, Map<String, Object> map2) {
+    private static Set<String> getUniqueKeys(Map<String, Object> map1, Map<String, Object> map2) {
         var uniqueKeys = new TreeSet<String>(Comparator.naturalOrder());
         uniqueKeys.addAll(map1.keySet());
         uniqueKeys.addAll(map2.keySet());
