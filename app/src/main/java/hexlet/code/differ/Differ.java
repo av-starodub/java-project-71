@@ -1,9 +1,7 @@
 package hexlet.code.differ;
 
 import hexlet.code.builder.PresentationBuilder;
-import hexlet.code.formatter.Formatter;
-import hexlet.code.formatter.formatters.plain.PlainFormatter;
-import hexlet.code.formatter.formatters.stylish.StylishFormatter;
+import hexlet.code.formatter.factory.FormatterFactory;
 import hexlet.code.parser.Parser;
 import hexlet.code.property.Property;
 import hexlet.code.status.Status;
@@ -28,18 +26,8 @@ public final class Differ {
     public static String generate(String filePath1, String filePath2, String presentationFormat) throws IOException {
         return PresentationBuilder.build(
                 createQueue(Parser.parseToMap(getFile(filePath1)), Parser.parseToMap(getFile(filePath2))),
-                getFormatter(presentationFormat)
+                FormatterFactory.create(presentationFormat)
         );
-    }
-
-    private static Formatter getFormatter(String presentationFormat) {
-        if ("stylish".equals(presentationFormat)) {
-            return new StylishFormatter();
-        }
-        if ("plain".equals(presentationFormat)) {
-            return new PlainFormatter();
-        }
-        throw new RuntimeException();
     }
 
     private static ArrayDeque<Property> createQueue(Map<String, Object> data1, Map<String, Object> data2) {
