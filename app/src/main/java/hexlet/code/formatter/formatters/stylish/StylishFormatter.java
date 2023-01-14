@@ -1,9 +1,9 @@
 package hexlet.code.formatter.formatters.stylish;
 
-import hexlet.code.formatter.Formatter;
+import hexlet.code.formatter.formatters.AbstractFormatter;
 import hexlet.code.property.Property;
 
-public final class StylishFormatter implements Formatter {
+public final class StylishFormatter extends AbstractFormatter {
     private final String template;
 
     public StylishFormatter() {
@@ -11,23 +11,24 @@ public final class StylishFormatter implements Formatter {
     }
 
     @Override
-    public StringBuilder format(StringBuilder sb, Property prop) {
-        switch (prop.getStatus()) {
-            case ADDED -> {
-                return sb.append(String.format(template, "+", prop.getName(), prop.getNewValue()));
-            }
-            case DELETED -> {
-                return sb.append(String.format(template, "-", prop.getName(), prop.getOldValue()));
-            }
-            case UNCHANGED -> {
-                return sb.append(String.format(template, " ", prop.getName(), prop.getOldValue()));
-            }
-            case UPDATED -> {
-                return sb
-                        .append(String.format(template, "-", prop.getName(), prop.getOldValue()))
-                        .append(String.format(template, "+", prop.getName(), prop.getNewValue()));
-            }
-            default -> throw new RuntimeException();
-        }
+    protected StringBuilder doAdded(StringBuilder sb, Property prop) {
+        return sb.append(String.format(template, "+", prop.getName(), prop.getNewValue()));
+    }
+
+    @Override
+    protected StringBuilder doDeleted(StringBuilder sb, Property prop) {
+        return sb.append(String.format(template, "-", prop.getName(), prop.getOldValue()));
+    }
+
+    @Override
+    protected StringBuilder doUnchanged(StringBuilder sb, Property prop) {
+        return sb.append(String.format(template, " ", prop.getName(), prop.getOldValue()));
+    }
+
+    @Override
+    protected StringBuilder doUpdated(StringBuilder sb, Property prop) {
+        return sb
+                .append(String.format(template, "-", prop.getName(), prop.getOldValue()))
+                .append(String.format(template, "+", prop.getName(), prop.getNewValue()));
     }
 }
