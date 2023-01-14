@@ -3,7 +3,6 @@ package hexlet.code.builder;
 import hexlet.code.formatter.formatters.plain.PlainFormatter;
 import hexlet.code.formatter.formatters.stylish.StylishFormatter;
 import hexlet.code.property.Property;
-import hexlet.code.status.Status;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayDeque;
@@ -18,13 +17,11 @@ public class PresentationBuilderTest {
         var properties = new ArrayDeque<Property>();
         properties.addLast(Property.builder()
                 .name("array")
-                .status(Status.UPDATED)
                 .oldValue(Arrays.asList(1, 2, 3))
                 .newValue(Arrays.asList(2, 3))
                 .build());
         properties.addLast(Property.builder()
                 .name("object")
-                .status(Status.UPDATED)
                 .oldValue(Map.of("key1", 10))
                 .newValue(Map.of("key1", 100))
                 .build());
@@ -45,13 +42,11 @@ public class PresentationBuilderTest {
         var properties = new ArrayDeque<Property>();
         properties.addLast(Property.builder()
                 .name("array")
-                .status(Status.UPDATED)
                 .oldValue(Arrays.asList(1, 2, 3))
                 .newValue(Arrays.asList(2, 3))
                 .build());
         properties.addLast(Property.builder()
                 .name("object")
-                .status(Status.UPDATED)
                 .oldValue(Map.of("key1", 10))
                 .newValue("null")
                 .build());
@@ -65,5 +60,4 @@ public class PresentationBuilderTest {
 
         assertThat(actual).isEqualTo(expected);
     }
-
 }

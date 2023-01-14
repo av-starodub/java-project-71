@@ -2,7 +2,6 @@ package hexlet.code.formatter.formatters;
 
 import hexlet.code.formatter.formatters.plain.PlainFormatter;
 import hexlet.code.property.Property;
-import hexlet.code.status.Status;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -15,7 +14,6 @@ public class PlainFormatterTest {
     public void shouldFormatAddedProperty() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.ADDED)
                 .newValue(Arrays.asList(1, 2, 3))
                 .build();
         var actual = new PlainFormatter().format(new StringBuilder(), prop).toString();
@@ -26,7 +24,6 @@ public class PlainFormatterTest {
     public void shouldFormatDeletedProperty() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.DELETED)
                 .oldValue("old")
                 .build();
         var actual = new PlainFormatter().format(new StringBuilder(), prop).toString();
@@ -37,8 +34,8 @@ public class PlainFormatterTest {
     public void shouldFormatUnchangedProperty() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.UNCHANGED)
                 .oldValue("old")
+                .newValue("old")
                 .build();
         var actual = new PlainFormatter().format(new StringBuilder(), prop).toString();
         var expected = "";
@@ -48,7 +45,6 @@ public class PlainFormatterTest {
     public void shouldFormatChangedProperty() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.UPDATED)
                 .oldValue("none")
                 .newValue(true)
                 .build();
@@ -60,7 +56,6 @@ public class PlainFormatterTest {
     public void shouldFormatChangedPropertyWithNull() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.UPDATED)
                 .oldValue("null")
                 .newValue(Map.of("k1", "v1"))
                 .build();

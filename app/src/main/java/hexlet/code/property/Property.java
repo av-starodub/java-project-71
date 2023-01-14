@@ -2,6 +2,8 @@ package hexlet.code.property;
 
 import hexlet.code.status.Status;
 
+import java.util.Objects;
+
 public final class Property {
     private String name;
     private Status status;
@@ -25,20 +27,15 @@ public final class Property {
         return newValue;
     }
 
-
     public static Builder builder() {
         return new Builder();
     }
+
     public static class Builder {
         private final Property property = new Property();
 
         public Builder name(String name) {
             property.name = name;
-            return this;
-        }
-
-        public Builder status(Status status) {
-            property.status = status;
             return this;
         }
 
@@ -53,7 +50,20 @@ public final class Property {
         }
 
         public Property build() {
+            setPropertyStatus();
             return property;
+        }
+
+        private void setPropertyStatus() {
+            if (Objects.isNull(property.oldValue)) {
+                property.status = Status.ADDED;
+            } else if (Objects.isNull(property.newValue)) {
+                property.status = Status.DELETED;
+            } else if (property.oldValue.equals(property.newValue)) {
+                property.status = Status.UNCHANGED;
+            } else {
+                property.status = Status.UPDATED;
+            }
         }
     }
 }

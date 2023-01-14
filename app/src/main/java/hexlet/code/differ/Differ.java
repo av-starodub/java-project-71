@@ -4,7 +4,6 @@ import hexlet.code.builder.PresentationBuilder;
 import hexlet.code.formatter.factory.FormatterFactory;
 import hexlet.code.parser.Parser;
 import hexlet.code.property.Property;
-import hexlet.code.status.Status;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,31 +32,14 @@ public final class Differ {
     private static ArrayDeque<Property> createQueue(Map<String, Object> data1, Map<String, Object> data2) {
         var queue = new ArrayDeque<Property>();
         getUniqueKeys(data1, data2).forEach(key ->
-                queue.addLast(buildProperty(key, getValue(data1, key), getValue(data2, key)))
+                queue.addLast(Property.builder()
+                        .name(key)
+                        .oldValue(getValue(data1, key))
+                        .newValue(getValue(data2, key))
+                        .build()
+                )
         );
         return queue;
-    }
-
-    private static Property buildProperty(String key, Object oldValue, Object newValue) {
-        return Property.builder()
-                .name(key)
-                .status(getPropertyStatus(oldValue, newValue))
-                .oldValue(oldValue)
-                .newValue(newValue)
-                .build();
-    }
-
-    private static Status getPropertyStatus(Object oldValue, Object newValue) {
-        if (Objects.isNull(oldValue)) {
-            return Status.ADDED;
-        }
-        if (Objects.isNull(newValue)) {
-            return Status.DELETED;
-        }
-        if (oldValue.equals(newValue)) {
-            return Status.UNCHANGED;
-        }
-        return Status.UPDATED;
     }
 
     private static Object getValue(Map<String, Object> data, String key) {

@@ -2,7 +2,6 @@ package hexlet.code.formatter.formatters;
 
 import hexlet.code.formatter.formatters.stylish.StylishFormatter;
 import hexlet.code.property.Property;
-import hexlet.code.status.Status;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -12,7 +11,6 @@ public class StylishFormatterTest {
     public void shouldFormatAddedProperty() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.ADDED)
                 .newValue("new")
                 .build();
         var actual = new StylishFormatter().format(new StringBuilder(), prop).toString();
@@ -23,7 +21,6 @@ public class StylishFormatterTest {
     public void shouldFormatDeletedProperty() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.DELETED)
                 .oldValue("old")
                 .build();
         var actual = new StylishFormatter().format(new StringBuilder(), prop).toString();
@@ -34,8 +31,8 @@ public class StylishFormatterTest {
     public void shouldFormatUnchangedProperty() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.UNCHANGED)
                 .oldValue("old")
+                .newValue("old")
                 .build();
         var actual = new StylishFormatter().format(new StringBuilder(), prop).toString();
         var expected = "    key: old\n";
@@ -45,7 +42,6 @@ public class StylishFormatterTest {
     public void shouldFormatChangedProperty() {
         var prop = Property.builder()
                 .name("key")
-                .status(Status.UPDATED)
                 .oldValue("old")
                 .newValue("new")
                 .build();
