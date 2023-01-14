@@ -1,7 +1,7 @@
 package hexlet.code.builder;
 
-import hexlet.code.formatter.PlainFormatter;
-import hexlet.code.formatter.StylishFormatter;
+import hexlet.code.formatter.formatters.plain.PlainFormatter;
+import hexlet.code.formatter.formatters.stylish.StylishFormatter;
 import hexlet.code.property.Property;
 import hexlet.code.status.Status;
 import org.junit.jupiter.api.Test;

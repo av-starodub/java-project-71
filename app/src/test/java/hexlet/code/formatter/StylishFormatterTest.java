@@ -1,5 +1,6 @@
 package hexlet.code.formatter;
 
+import hexlet.code.formatter.formatters.stylish.StylishFormatter;
 import hexlet.code.property.Property;
 import hexlet.code.status.Status;
 import org.junit.jupiter.api.Test;

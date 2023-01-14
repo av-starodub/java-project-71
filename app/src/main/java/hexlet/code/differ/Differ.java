@@ -2,8 +2,8 @@ package hexlet.code.differ;
 
 import hexlet.code.builder.PresentationBuilder;
 import hexlet.code.formatter.Formatter;
-import hexlet.code.formatter.PlainFormatter;
-import hexlet.code.formatter.StylishFormatter;
+import hexlet.code.formatter.formatters.plain.PlainFormatter;
+import hexlet.code.formatter.formatters.stylish.StylishFormatter;
 import hexlet.code.parser.Parser;
 import hexlet.code.property.Property;
 import hexlet.code.status.Status;
