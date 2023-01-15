@@ -1,6 +1,7 @@
 package hexlet.code.formatter.factory;
 
 import hexlet.code.formatter.Formatter;
+import hexlet.code.formatter.formatters.json.JsonFormatter;
 import hexlet.code.formatter.formatters.plain.PlainFormatter;
 import hexlet.code.formatter.formatters.stylish.StylishFormatter;
 
@@ -13,6 +14,9 @@ public final class FormatterFactory {
         }
         if ("plain".equals(presentationFormat)) {
             return new PlainFormatter();
+        }
+        if ("json".equals(presentationFormat)) {
+            return new JsonFormatter();
         }
         throw new RuntimeException();
     }

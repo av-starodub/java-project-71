@@ -1,7 +1,7 @@
 package hexlet.code.formatter;
 
-import hexlet.code.property.Property;
+import hexlet.code.list.SortedByNameListDiff;
 
 public interface Formatter {
-    StringBuilder format(StringBuilder sb, Property property);
+    String format(SortedByNameListDiff listDiff);
 }

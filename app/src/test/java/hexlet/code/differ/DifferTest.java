@@ -58,7 +58,6 @@ public class DifferTest {
     @Test
     public void shouldCorrectlyGenerateTheDifferenceInPlainFormat() throws IOException {
         var expectedPlain = """
-                {
                 Property 'chars2' was updated. From [complex value] to false
                 Property 'checked' was updated. From false to true
                 Property 'default' was updated. From null to [complex value]
@@ -72,11 +71,91 @@ public class DifferTest {
                 Property 'setting1' was updated. From 'Some value' to 'Another value'
                 Property 'setting2' was updated. From 200 to 300
                 Property 'setting3' was updated. From true to 'none'
-                }""";
+                """;
         String actual = Differ.generate(
                 createPath(RELATIVE_PATH, "yaml1.yml"),
                 createPath(ABSOLUTE_PATH, "yaml2.yml"),
                 "plain");
+        assertThat(actual).isEqualTo(expectedPlain);
+    }
+
+    @Test
+    public void shouldCorrectlyGenerateTheDifferenceInJsonFormat() throws IOException {
+        var expectedPlain = """
+                {
+                  "chars1" : {
+                    "Status" : "UNCHANGED",
+                    "file1" : "[a, b, c]"
+                  },
+                  "chars2" : {
+                    "Status" : "UPDATED",
+                    "file1" : "[d, e, f]",
+                    "file2" : "false"
+                  },
+                  "checked" : {
+                    "Status" : "UPDATED",
+                    "file1" : "false",
+                    "file2" : "true"
+                  },
+                  "default" : {
+                    "Status" : "UPDATED",
+                    "file1" : "null",
+                    "file2" : "[value1, value2]"
+                  },
+                  "id" : {
+                    "Status" : "UPDATED",
+                    "file1" : "45",
+                    "file2" : "null"
+                  },
+                  "key1" : {
+                    "Status" : "DELETED",
+                    "file1" : "value1"
+                  },
+                  "key2" : {
+                    "Status" : "ADDED",
+                    "file2" : "value2"
+                  },
+                  "numbers1" : {
+                    "Status" : "UNCHANGED",
+                    "file1" : "[1, 2, 3, 4]"
+                  },
+                  "numbers2" : {
+                    "Status" : "UPDATED",
+                    "file1" : "[2, 3, 4, 5]",
+                    "file2" : "[22, 33, 44, 55]"
+                  },
+                  "numbers3" : {
+                    "Status" : "DELETED",
+                    "file1" : "[3, 4, 5]"
+                  },
+                  "numbers4" : {
+                    "Status" : "ADDED",
+                    "file2" : "[4, 5, 6]"
+                  },
+                  "obj1" : {
+                    "Status" : "ADDED",
+                    "file2" : "{nestedKey=value, isNested=true}"
+                  },
+                  "setting1" : {
+                    "Status" : "UPDATED",
+                    "file1" : "Some value",
+                    "file2" : "Another value"
+                  },
+                  "setting2" : {
+                    "Status" : "UPDATED",
+                    "file1" : "200",
+                    "file2" : "300"
+                  },
+                  "setting3" : {
+                    "Status" : "UPDATED",
+                    "file1" : "true",
+                    "file2" : "none"
+                  }
+                }""";
+        String actual = Differ.generate(
+                createPath(RELATIVE_PATH, "yaml1.yml"),
+                createPath(ABSOLUTE_PATH, "yaml2.yml"),
+                "json");
         assertThat(actual).isEqualTo(expectedPlain);
     }
 }

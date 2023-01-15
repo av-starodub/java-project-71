@@ -2,10 +2,10 @@ package hexlet.code.differ;
 
 import java.io.IOException;
 
-import hexlet.code.builder.PresentationBuilder;
+import hexlet.code.filesupplier.FileSupplier;
 import hexlet.code.formatter.factory.FormatterFactory;
+import hexlet.code.list.SortedByNameListDiff;
 import hexlet.code.parser.Parser;
-import hexlet.code.service.DifferService;
 
 public final class Differ {
     private Differ() {
@@ -16,11 +16,11 @@ public final class Differ {
     }
 
     public static String generate(String filePath1, String filePath2, String presentationFormat) throws IOException {
-        return PresentationBuilder.build(
-                DifferService.getAllSortedByName(
-                        Parser.parseToMap(DifferService.getFile(filePath1)),
-                        Parser.parseToMap(DifferService.getFile(filePath2))),
-                FormatterFactory.create(presentationFormat)
-        );
+        var formatter = FormatterFactory.create(presentationFormat);
+        var data1 = Parser.parseToMap(FileSupplier.getFile(filePath1));
+        var data2 = Parser.parseToMap(FileSupplier.getFile(filePath2));
+        var listDifference = SortedByNameListDiff.create(data1, data2);
+
+        return formatter.format(listDifference);
     }
 }

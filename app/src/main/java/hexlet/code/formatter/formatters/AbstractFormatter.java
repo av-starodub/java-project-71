@@ -1,33 +1,36 @@
 package hexlet.code.formatter.formatters;
 
 import hexlet.code.formatter.Formatter;
+import hexlet.code.list.SortedByNameListDiff;
 import hexlet.code.property.Property;
 
 public abstract class AbstractFormatter implements Formatter {
     @Override
-    public StringBuilder format(StringBuilder sb, Property prop) {
-        switch (prop.getStatus()) {
-            case ADDED -> {
-                return doAdded(sb, prop);
+    public String format(SortedByNameListDiff listDiff) {
+        var sb = new StringBuilder();
+        sb.append(doStart());
+        for (var prop : listDiff.getAll()) {
+            switch (prop.getStatus()) {
+                case ADDED -> sb.append(doAdded(prop));
+                case DELETED -> sb.append(doDeleted(prop));
+                case UNCHANGED -> sb.append(doUnchanged(prop));
+                case UPDATED -> sb.append(doUpdated(prop));
+                default -> { }
             }
-            case DELETED -> {
-                return doDeleted(sb, prop);
-            }
-            case UNCHANGED -> {
-                return doUnchanged(sb, prop);
-            }
-            case UPDATED -> {
-                return doUpdated(sb, prop);
-            }
-            default -> throw new RuntimeException();
         }
+        sb.append(doEnd());
+        return sb.toString();
     }
 
-    protected abstract StringBuilder doAdded(StringBuilder sb, Property prop);
+    protected abstract String doStart();
 
-    protected abstract StringBuilder doDeleted(StringBuilder sb, Property prop);
+    protected abstract String doEnd();
 
-    protected abstract StringBuilder doUnchanged(StringBuilder sb, Property prop);
+    protected abstract String doAdded(Property prop);
 
-    protected abstract StringBuilder doUpdated(StringBuilder sb, Property prop);
+    protected abstract String doDeleted(Property prop);
+
+    protected abstract String doUnchanged(Property prop);
+
+    protected abstract String doUpdated(Property prop);
 }

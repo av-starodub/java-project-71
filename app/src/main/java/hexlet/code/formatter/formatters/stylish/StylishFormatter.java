@@ -11,24 +11,32 @@ public final class StylishFormatter extends AbstractFormatter {
     }
 
     @Override
-    protected StringBuilder doAdded(StringBuilder sb, Property prop) {
-        return sb.append(String.format(template, "+", prop.getName(), prop.getNewValue()));
+    protected String doStart() {
+        return "{\n";
     }
 
     @Override
-    protected StringBuilder doDeleted(StringBuilder sb, Property prop) {
-        return sb.append(String.format(template, "-", prop.getName(), prop.getOldValue()));
+    protected String doEnd() {
+        return "}";
     }
 
     @Override
-    protected StringBuilder doUnchanged(StringBuilder sb, Property prop) {
-        return sb.append(String.format(template, " ", prop.getName(), prop.getOldValue()));
+    protected String doAdded(Property prop) {
+        return String.format(template, "+", prop.getName(), prop.getNewValue());
     }
 
     @Override
-    protected StringBuilder doUpdated(StringBuilder sb, Property prop) {
-        return sb
-                .append(String.format(template, "-", prop.getName(), prop.getOldValue()))
-                .append(String.format(template, "+", prop.getName(), prop.getNewValue()));
+    protected String doDeleted(Property prop) {
+        return String.format(template, "-", prop.getName(), prop.getOldValue());
+    }
+
+    @Override
+    protected String doUnchanged(Property prop) {
+        return String.format(template, " ", prop.getName(), prop.getOldValue());
+    }
+
+    @Override
+    protected String doUpdated(Property prop) {
+        return String.format("%s%s", doDeleted(prop), doAdded(prop));
     }
 }

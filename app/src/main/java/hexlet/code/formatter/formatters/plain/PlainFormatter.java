@@ -9,33 +9,41 @@ import java.util.Map;
 public final class PlainFormatter extends AbstractFormatter {
 
     @Override
-    protected StringBuilder doAdded(StringBuilder sb, Property prop) {
-        return sb.append(String.format(
-                        "Property '%s' was added with value: %s\n",
-                        prop.getName(),
-                        checkComplexValue(prop.getNewValue())
-                )
+    protected String doStart() {
+        return "";
+    }
+
+    @Override
+    protected String doEnd() {
+        return "";
+    }
+
+    @Override
+    protected String doAdded(Property prop) {
+        return String.format(
+                "Property '%s' was added with value: %s\n",
+                prop.getName(),
+                checkComplexValue(prop.getNewValue())
         );
     }
 
     @Override
-    protected StringBuilder doDeleted(StringBuilder sb, Property prop) {
-        return sb.append(String.format("Property '%s' was removed\n", prop.getName()));
+    protected String doDeleted(Property prop) {
+        return String.format("Property '%s' was removed\n", prop.getName());
     }
 
     @Override
-    protected StringBuilder doUnchanged(StringBuilder sb, Property prop) {
-        return sb;
+    protected String doUnchanged(Property prop) {
+        return "";
     }
 
     @Override
-    protected StringBuilder doUpdated(StringBuilder sb, Property prop) {
-        return sb.append(String.format(
-                        "Property '%s' was updated. From %s to %s\n",
-                        prop.getName(),
-                        checkComplexValue(prop.getOldValue()),
-                        checkComplexValue(prop.getNewValue())
-                )
+    protected String doUpdated(Property prop) {
+        return String.format(
+                "Property '%s' was updated. From %s to %s\n",
+                prop.getName(),
+                checkComplexValue(prop.getOldValue()),
+                checkComplexValue(prop.getNewValue())
         );
     }
 
