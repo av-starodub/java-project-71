@@ -4,7 +4,7 @@ clean:
 	./gradlew clean
 
 build:
-	./gradlew clean build
+	./gradlew clean checkstyleMain checkstyleTest build
 
 install:
 	./gradlew clean install
