@@ -36,3 +36,4 @@ Property 'group2' was removed
 ```
 * [Сравнение JSON файлов ( 'stylish' output format )](https://asciinema.org/a/mUhFoqS1xFXZI0F3QgIsR0eH1)
 * [Сравнение YAML файлов ( 'plain' output format )](https://asciinema.org/a/LUmmorIb6Wc3LyNueXaNiijQ6)
+* [Сравнение YAML файлов ( 'json' output format )](https://asciinema.org/a/oFseBpRAyiLB1GtUQgmKyt7sh)
