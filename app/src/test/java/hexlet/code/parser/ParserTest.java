@@ -1,5 +1,6 @@
 package hexlet.code.parser;
 
+import hexlet.code.AppTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,8 +11,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static hexlet.code.differ.DifferTest.ABSOLUTE_PATH;
-import static hexlet.code.differ.DifferTest.RELATIVE_PATH;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParserTest {
@@ -26,15 +25,16 @@ public class ParserTest {
     public void tearDown() {
         EXPECTED_MAP.clear();
     }
+
     @Test
     public void shouldCreateMapFromJsonFile() throws IOException {
-        var actual = Parser.parseToMap(new File(RELATIVE_PATH, "json2.json"));
+        var actual = Parser.parseToMap(new File(AppTest.RELATIVE_PATH, "json2.json"));
         assertThat(actual).containsExactlyInAnyOrderEntriesOf(EXPECTED_MAP);
     }
 
     @Test
     public void shouldCreateMapFromYamlFile() throws IOException {
-        var actual = Parser.parseToMap(new File(ABSOLUTE_PATH, "yaml2.yml"));
+        var actual = Parser.parseToMap(new File(AppTest.ABSOLUTE_PATH, "yaml2.yml"));
         assertThat(actual).containsExactlyInAnyOrderEntriesOf(EXPECTED_MAP);
     }
 

@@ -6,14 +6,14 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff [-hV]", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
-public class App implements Callable<Integer> {
-    private static final int EXIT_CODE = 0;
+public final class App implements Callable<Integer> {
+    private static final int SUCCESS_EXIT_CODE = 0;
+    private static final int EXCEPTION_EXIT_CODE = 1;
     @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
     private String format;
 
@@ -32,10 +32,11 @@ public class App implements Callable<Integer> {
         try {
             var presentationFormat = Objects.isNull(format) ? "stylish" : format;
             showDifference(Differ.generate(filePath1, filePath2, presentationFormat));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return EXCEPTION_EXIT_CODE;
         }
-        return EXIT_CODE;
+        return SUCCESS_EXIT_CODE;
     }
 
     private static void showDifference(String diff) {

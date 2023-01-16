@@ -1,20 +1,13 @@
 package hexlet.code.differ;
 
+import hexlet.code.AppTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DifferTest {
-    public static final String RELATIVE_PATH = "src/test/resources/fixtures";
-    public static final String ABSOLUTE_PATH = new File(RELATIVE_PATH).getAbsolutePath();
-
-    private String createPath(String path, String fileName) {
-        return String.format("%s/%s", path, fileName);
-    }
-
+public final class DifferTest {
     @Test
     public void isDifferClassExist() {
         assertThat(Differ.class).isNotNull();
@@ -50,8 +43,9 @@ public class DifferTest {
                 }""";
 
         String actual = Differ.generate(
-                createPath(ABSOLUTE_PATH, "json1.json"),
-                createPath(RELATIVE_PATH, "json2.json"));
+
+                AppTest.createPath(AppTest.ABSOLUTE_PATH, "json1.json"),
+                AppTest.createPath(AppTest.RELATIVE_PATH, "json2.json"));
         assertThat(actual).isEqualTo(expectedStylish);
     }
 
@@ -73,8 +67,8 @@ public class DifferTest {
                 Property 'setting3' was updated. From true to 'none'
                 """;
         String actual = Differ.generate(
-                createPath(RELATIVE_PATH, "yaml1.yml"),
-                createPath(ABSOLUTE_PATH, "yaml2.yml"),
+                AppTest.createPath(AppTest.RELATIVE_PATH, "yaml1.yml"),
+                AppTest.createPath(AppTest.ABSOLUTE_PATH, "yaml2.yml"),
                 "plain");
         assertThat(actual).isEqualTo(expectedPlain);
     }
@@ -153,8 +147,8 @@ public class DifferTest {
                   }
                 }""";
         String actual = Differ.generate(
-                createPath(RELATIVE_PATH, "yaml1.yml"),
-                createPath(ABSOLUTE_PATH, "yaml2.yml"),
+                AppTest.createPath(AppTest.RELATIVE_PATH, "yaml1.yml"),
+                AppTest.createPath(AppTest.ABSOLUTE_PATH, "yaml2.yml"),
                 "json");
         assertThat(actual).isEqualTo(expectedPlain);
     }
