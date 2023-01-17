@@ -9,7 +9,7 @@ import hexlet.code.status.Status;
 
 import java.io.IOException;
 
-public class ListDiffJsonSerializer extends StdSerializer<SortedByNameListDiff> {
+public final class ListDiffJsonSerializer extends StdSerializer<SortedByNameListDiff> {
     public ListDiffJsonSerializer() {
         this(null);
     }

@@ -34,22 +34,22 @@ public final class Property {
     public static class Builder {
         private final Property property = new Property();
 
-        public Builder name(String name) {
+        public final Builder name(String name) {
             property.name = name;
             return this;
         }
 
-        public Builder oldValue(Object value) {
+        public final Builder oldValue(Object value) {
             property.oldValue = value;
             return this;
         }
 
-        public Builder newValue(Object value) {
+        public final Builder newValue(Object value) {
             property.newValue = value;
             return this;
         }
 
-        public Property build() {
+        public final Property build() {
             setPropertyStatus();
             return property;
         }

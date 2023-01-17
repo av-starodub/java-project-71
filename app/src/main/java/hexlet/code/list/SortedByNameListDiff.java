@@ -13,22 +13,21 @@ import java.util.TreeSet;
 public final class SortedByNameListDiff {
     private final List<Property> listDiff;
 
-    public SortedByNameListDiff(List<Property> listDiff) {
-        this.listDiff = listDiff;
+    private SortedByNameListDiff(List<Property> sortedProperties) {
+        this.listDiff = sortedProperties;
     }
 
     public static SortedByNameListDiff create(Map<String, Object> data1, Map<String, Object> data2) {
-        var listDiff = new ArrayList<Property>();
+        var sortedProperties = new ArrayList<Property>();
         getAllSortedUniqueKeys(Objects.requireNonNull(data1), Objects.requireNonNull(data2)).forEach(key ->
-                listDiff.add(Property.builder()
+                sortedProperties.add(Property.builder()
                         .name(key)
                         .oldValue(getValue(data1, key))
                         .newValue(getValue(data2, key))
                         .build()
                 )
         );
-
-        return new SortedByNameListDiff(listDiff);
+        return new SortedByNameListDiff(sortedProperties);
     }
 
     public List<Property> getAll() {

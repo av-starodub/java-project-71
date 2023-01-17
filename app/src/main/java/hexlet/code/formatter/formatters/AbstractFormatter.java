@@ -6,7 +6,7 @@ import hexlet.code.property.Property;
 
 public abstract class AbstractFormatter implements Formatter {
     @Override
-    public String format(SortedByNameListDiff listDiff) {
+    public final String format(SortedByNameListDiff listDiff) {
         var sb = new StringBuilder();
         sb.append(doStart());
         for (var prop : listDiff.getAll()) {
