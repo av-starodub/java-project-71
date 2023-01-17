@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.differ.Differ;
 import hexlet.code.validator.InputValidator;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;

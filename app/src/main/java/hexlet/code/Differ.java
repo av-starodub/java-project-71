@@ -1,4 +1,4 @@
-package hexlet.code.differ;
+package hexlet.code;
 
 import java.io.IOException;
 
