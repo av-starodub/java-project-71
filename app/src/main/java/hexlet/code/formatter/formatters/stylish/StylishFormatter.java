@@ -17,7 +17,7 @@ public final class StylishFormatter extends AbstractFormatter {
 
     @Override
     protected String doEnd() {
-        return "}";
+        return "}\n";
     }
 
     @Override

@@ -19,7 +19,7 @@ public abstract class AbstractFormatter implements Formatter {
             }
         }
         sb.append(doEnd());
-        return sb.toString();
+        return sb.substring(0, sb.length() - 1);
     }
 
     protected abstract String doStart();
