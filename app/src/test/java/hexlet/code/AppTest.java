@@ -27,7 +27,7 @@ public final class AppTest {
 
     @Test
     public void shouldFinishWithSuccessExitCode() {
-        int actualExitCode = new CommandLine(new App()).execute(filePath1, filePath2);
+        int actualExitCode = new CommandLine(new App()).execute("-f", "plain", filePath1, filePath2);
         assertThat(actualExitCode).isEqualTo(0);
     }
 

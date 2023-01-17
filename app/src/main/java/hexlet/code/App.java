@@ -1,6 +1,7 @@
 package hexlet.code;
 
 import hexlet.code.differ.Differ;
+import hexlet.code.validator.InputValidator;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -31,9 +32,10 @@ public final class App implements Callable<Integer> {
     public Integer call() {
         try {
             var presentationFormat = Objects.isNull(format) ? "stylish" : format;
+            InputValidator.checkArgs(filePath1, filePath2, presentationFormat);
             showDifference(Differ.generate(filePath1, filePath2, presentationFormat));
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Throwable e) {
+            printExceptionInfo(e);
             return EXCEPTION_EXIT_CODE;
         }
         return SUCCESS_EXIT_CODE;
@@ -41,5 +43,9 @@ public final class App implements Callable<Integer> {
 
     private static void showDifference(String diff) {
         System.out.println(diff);
+    }
+
+    private static void printExceptionInfo(Throwable e) {
+        System.out.printf("%s: %s%n%s%n", e.getClass(), e.getMessage(), e.getStackTrace()[0]);
     }
 }
