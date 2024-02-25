@@ -161,11 +161,12 @@
 
         <!-- Checks for common coding problems               -->
         <!-- See https://checkstyle.org/config_coding.html -->
+        <module name="MagicNumber"/>
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
         <module name="HiddenField" >
             <property name="ignoreSetter" value="true" />
-            <property name="ignoreConstructorParameter" value="true" />
+            <property name="ignoreConstructorParameter" value="false" />
         </module>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
