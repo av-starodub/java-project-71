@@ -20,25 +20,25 @@ public final class AppTest {
 
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         filePath1 = createPath(ABSOLUTE_PATH, "json1.json");
         filePath2 = createPath(ABSOLUTE_PATH, "json2.json");
     }
 
     @Test
-    public void shouldFinishWithSuccessExitCode() {
+    void shouldFinishWithSuccessExitCode() {
         int actualExitCode = new CommandLine(new App()).execute("-f", "plain", filePath1, filePath2);
         assertThat(actualExitCode).isEqualTo(0);
     }
 
     @Test
-    public void shouldFinishWithExceptionExitCode() {
+    void shouldFinishWithExceptionExitCode() {
         int actualExitCode = new CommandLine(new App()).execute(filePath1, "invalid filePath");
         assertThat(actualExitCode).isEqualTo(1);
     }
 
     @Test
-    public void shouldFinishWithInputErrorCode() {
+    void shouldFinishWithInputErrorCode() {
         int actualExitCode = new CommandLine(new App()).execute("invalid input");
         assertThat(actualExitCode).isEqualTo(2);
     }

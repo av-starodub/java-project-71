@@ -8,7 +8,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class PropertyTest {
     @Test
-    public void shouldCreatePropertyObject() {
+    void shouldCreatePropertyObject() {
         var property = Property.builder()
                 .name("key")
                 .oldValue("old")
@@ -22,7 +22,7 @@ public class PropertyTest {
     }
 
     @Test
-    public void shouldSetAddedAsStatusOfProperty() {
+    void shouldSetAddedAsStatusOfProperty() {
         var property = Property.builder()
                 .name("key")
                 .oldValue(null)
@@ -32,7 +32,7 @@ public class PropertyTest {
     }
 
     @Test
-    public void shouldSetDeletedAsStatusOfProperty() {
+    void shouldSetDeletedAsStatusOfProperty() {
         var property = Property.builder()
                 .name("key")
                 .oldValue("old")
@@ -42,7 +42,7 @@ public class PropertyTest {
     }
 
     @Test
-    public void shouldSetUnchangedAsStatusOfProperty() {
+    void shouldSetUnchangedAsStatusOfProperty() {
         var property = Property.builder()
                 .name("key")
                 .oldValue("old")

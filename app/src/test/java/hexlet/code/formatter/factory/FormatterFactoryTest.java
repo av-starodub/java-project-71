@@ -8,12 +8,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class FormatterFactoryTest {
     @Test
-    public void shouldCreateStylishFormatter() {
+    void shouldCreateStylishFormatter() {
         var actual = FormatterFactory.create("stylish");
         assertThat(actual).isExactlyInstanceOf(StylishFormatter.class);
     }
     @Test
-    public void shouldCreatePlainFormatter() {
+    void shouldCreatePlainFormatter() {
         var actual = FormatterFactory.create("plain");
         assertThat(actual).isExactlyInstanceOf(PlainFormatter.class);
     }

@@ -8,12 +8,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public final class DifferTest {
     @Test
-    public void isDifferClassExist() {
+    void isDifferClassExist() {
         assertThat(Differ.class).isNotNull();
     }
 
     @Test
-    public void shouldCorrectlyGenerateTheDifferenceInStylishFormat() throws IOException {
+    void shouldCorrectlyGenerateTheDifferenceInStylishFormat() throws IOException {
         var expectedStylish = """
                 {
                     chars1: [a, b, c]
@@ -49,7 +49,7 @@ public final class DifferTest {
     }
 
     @Test
-    public void shouldCorrectlyGenerateTheDifferenceInPlainFormat() throws IOException {
+    void shouldCorrectlyGenerateTheDifferenceInPlainFormat() throws IOException {
         var expectedPlain = """
                 Property 'chars2' was updated. From [complex value] to false
                 Property 'checked' was updated. From false to true
@@ -72,7 +72,7 @@ public final class DifferTest {
     }
 
     @Test
-    public void shouldCorrectlyGenerateTheDifferenceInJsonFormat() throws IOException {
+    void shouldCorrectlyGenerateTheDifferenceInJsonFormat() throws IOException {
         var expectedPlain = """
                 {
                   "chars1" : {
