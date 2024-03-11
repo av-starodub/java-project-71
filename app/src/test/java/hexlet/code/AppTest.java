@@ -5,12 +5,13 @@ import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public final class AppTest {
     public static final String RELATIVE_PATH = "src/test/resources/fixtures";
-    public static final String ABSOLUTE_PATH = new File(RELATIVE_PATH).getAbsolutePath();
+    public static final String ABSOLUTE_PATH = Paths.get(RELATIVE_PATH).toAbsolutePath().normalize().toString();
     private String filePath1;
     private String filePath2;
 
