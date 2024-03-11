@@ -8,10 +8,12 @@ public final class Property {
     private Object oldValue;
     private Object newValue;
 
+    private Property() {
+    }
+
     public String getName() {
         return name;
     }
-
 
     public PropertyStatus getStatus() {
         return status;
