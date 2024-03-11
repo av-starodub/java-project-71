@@ -40,7 +40,6 @@ lint:
 update-deps:
 	./gradlew useLatestVersions
 
-run-dist: run-dist
 build-run: build run
 
 .PHONY: build
