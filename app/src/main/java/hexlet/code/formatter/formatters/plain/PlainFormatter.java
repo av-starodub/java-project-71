@@ -19,7 +19,7 @@ public final class PlainFormatter extends AbstractFormatter {
     }
 
     @Override
-    protected String doAdded(Property prop) {
+    protected String setAdded(Property prop) {
         return String.format(
                 "Property '%s' was added with value: %s\n",
                 prop.getName(),
@@ -28,17 +28,17 @@ public final class PlainFormatter extends AbstractFormatter {
     }
 
     @Override
-    protected String doDeleted(Property prop) {
+    protected String setDeleted(Property prop) {
         return String.format("Property '%s' was removed\n", prop.getName());
     }
 
     @Override
-    protected String doUnchanged(Property prop) {
+    protected String setUnchanged(Property prop) {
         return "";
     }
 
     @Override
-    protected String doUpdated(Property prop) {
+    protected String setUpdated(Property prop) {
         return String.format(
                 "Property '%s' was updated. From %s to %s\n",
                 prop.getName(),

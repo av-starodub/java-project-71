@@ -21,22 +21,22 @@ public final class StylishFormatter extends AbstractFormatter {
     }
 
     @Override
-    protected String doAdded(Property prop) {
+    protected String setAdded(Property prop) {
         return String.format(template, "+", prop.getName(), prop.getNewValue());
     }
 
     @Override
-    protected String doDeleted(Property prop) {
+    protected String setDeleted(Property prop) {
         return String.format(template, "-", prop.getName(), prop.getOldValue());
     }
 
     @Override
-    protected String doUnchanged(Property prop) {
+    protected String setUnchanged(Property prop) {
         return String.format(template, " ", prop.getName(), prop.getOldValue());
     }
 
     @Override
-    protected String doUpdated(Property prop) {
-        return String.format("%s%s", doDeleted(prop), doAdded(prop));
+    protected String setUpdated(Property prop) {
+        return String.format("%s%s", setDeleted(prop), setAdded(prop));
     }
 }

@@ -11,10 +11,10 @@ public abstract class AbstractFormatter implements Formatter {
         sb.append(doStart());
         for (var prop : listDiff.getAll()) {
             switch (prop.getStatus()) {
-                case ADDED -> sb.append(doAdded(prop));
-                case DELETED -> sb.append(doDeleted(prop));
-                case UNCHANGED -> sb.append(doUnchanged(prop));
-                case UPDATED -> sb.append(doUpdated(prop));
+                case ADDED -> sb.append(setAdded(prop));
+                case DELETED -> sb.append(setDeleted(prop));
+                case UNCHANGED -> sb.append(setUnchanged(prop));
+                case UPDATED -> sb.append(setUpdated(prop));
                 default -> { }
             }
         }
@@ -26,11 +26,11 @@ public abstract class AbstractFormatter implements Formatter {
 
     protected abstract String doEnd();
 
-    protected abstract String doAdded(Property prop);
+    protected abstract String setAdded(Property prop);
 
-    protected abstract String doDeleted(Property prop);
+    protected abstract String setDeleted(Property prop);
 
-    protected abstract String doUnchanged(Property prop);
+    protected abstract String setUnchanged(Property prop);
 
-    protected abstract String doUpdated(Property prop);
+    protected abstract String setUpdated(Property prop);
 }
