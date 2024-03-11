@@ -28,7 +28,7 @@ make install
 ~~~
 make help
 ~~~
-* #####Генерация отчета в формате 'stylish'
+* ##### Генерация отчета в формате 'stylish' 
   [Сравнение JSON файлов](https://asciinema.org/a/TsxEUumL953QN9WhO7iM7SKjG)
 ~~~
 make stylish filePath1 filePath2
@@ -46,7 +46,7 @@ STYLISH OUTPYT VIEW
 + setting4: blah blah
   }
 ~~~
-* #####Генерация отчета в формате 'plain text'
+* ##### Генерация отчета в формате 'plain text'
   [Сравнение YAML файлов](https://asciinema.org/a/L3mG2yp19djWOJHTqzdslEELE)
 ~~~
 make plain filePath1 filePath2
@@ -59,7 +59,7 @@ Property 'key2' was added with value: 'value2'
 Property 'numbers2' was updated. From [complex value] to [complex value]
 Property 'numbers3' was removed
 ~~~
-* #####Генерация отчета в формате 'json'
+* ##### Генерация отчета в формате 'json'
   [Сравнение YAML файлов](https://asciinema.org/a/521xFoBVrMrEYYzGxltv1O0lW)
 ~~~
 make json filePath1 filePath2
