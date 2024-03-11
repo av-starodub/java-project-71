@@ -7,22 +7,34 @@
 
 ### Описание
 
-Вычислитель отличий – программа, определяющая разницу между двумя структурами данных.
+* Программа определяет разницу между двумя структурами данных
+* Поддерживает входные форматы yaml и json
 
-Возможности утилиты:
-* Поддержка разных входных форматов: yaml и json
-* Генерация отчета в виде plain text, stylish и json
-
-Пример использования:
-```# формат plain
-./app --format plain path/to/file.yml another/path/file.json
-
-Property 'follow' was added with value: false
-Property 'baz' was updated. From 'bas' to 'bars'
-Property 'group2' was removed
-
-# формат stylish
-./app filepath1.json filepath2.json
+### Использование
+~~~
+git clone https://github.com/av-starodub/java-project-71.git
+~~~
+* #### Установка
+~~~
+cd java-project-71.git
+~~~
+~~~
+make build
+~~~
+~~~
+make install
+~~~
+* ##### Справка
+~~~
+make help
+~~~
+* #####Генерация отчета в формате 'stylish'
+  [Сравнение JSON файлов](https://asciinema.org/a/TsxEUumL953QN9WhO7iM7SKjG)
+~~~
+make stylish filePath1 filePath2
+~~~
+~~~
+STYLISH OUTPYT VIEW
 
 {
 + follow: false
@@ -33,7 +45,45 @@ Property 'group2' was removed
 + setting3: {key=value}
 + setting4: blah blah
   }
-```
-* [Сравнение JSON файлов ( 'stylish' output format )](https://asciinema.org/a/mUhFoqS1xFXZI0F3QgIsR0eH1)
-* [Сравнение YAML файлов ( 'plain' output format )](https://asciinema.org/a/LUmmorIb6Wc3LyNueXaNiijQ6)
-* [Сравнение YAML файлов ( 'json' output format )](https://asciinema.org/a/oFseBpRAyiLB1GtUQgmKyt7sh)
+~~~
+* #####Генерация отчета в формате 'plain text'
+  [Сравнение YAML файлов](https://asciinema.org/a/L3mG2yp19djWOJHTqzdslEELE)
+~~~
+make plain filePath1 filePath2
+~~~
+~~~
+PLAIN TEXT OUTPYT VIEW
+
+Property 'key1' was removed
+Property 'key2' was added with value: 'value2'
+Property 'numbers2' was updated. From [complex value] to [complex value]
+Property 'numbers3' was removed
+~~~
+* #####Генерация отчета в формате 'json'
+  [Сравнение YAML файлов](https://asciinema.org/a/521xFoBVrMrEYYzGxltv1O0lW)
+~~~
+make json filePath1 filePath2
+~~~
+~~~
+JSON OUTPYT VIEW
+
+{
+  "numbers2" : {
+    "Status" : "UPDATED",
+    "file1" : "[2, 3, 4, 5]",
+    "file2" : "[22, 33, 44, 55]"
+  },
+  "numbers3" : {
+    "Status" : "DELETED",
+    "file1" : "[3, 4, 5]"
+  },
+  "numbers4" : {
+    "Status" : "ADDED",
+    "file2" : "[4, 5, 6]"
+  },
+  "obj1" : {
+    "Status" : "ADDED",
+    "file2" : "{nestedKey=value, isNested=true}"
+  }
+}
+~~~
