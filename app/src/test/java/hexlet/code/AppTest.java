@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 
-import java.io.File;
 import java.nio.file.Paths;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
