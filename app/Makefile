@@ -25,6 +25,9 @@ run-plain:
 run-json:
 	./build/install/app/bin/app -f 'json' $(ARGS)
 
+run-help:
+	./build/install/app/bin/app -h
+
 test:
 	./gradlew test
 
@@ -37,7 +40,7 @@ lint:
 update-deps:
 	./gradlew useLatestVersions
 
-
+run-dist: run-dist
 build-run: build run
 
 .PHONY: build
