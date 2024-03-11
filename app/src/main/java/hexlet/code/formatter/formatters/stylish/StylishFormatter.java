@@ -1,7 +1,7 @@
 package hexlet.code.formatter.formatters.stylish;
 
 import hexlet.code.formatter.formatters.AbstractFormatter;
-import hexlet.code.property.Property;
+import hexlet.code.difference.property.Property;
 
 public final class StylishFormatter extends AbstractFormatter {
     private final String template;

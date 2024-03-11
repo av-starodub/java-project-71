@@ -1,12 +1,10 @@
-package hexlet.code.property;
-
-import hexlet.code.status.Status;
+package hexlet.code.difference.property;
 
 import java.util.Objects;
 
 public final class Property {
     private String name;
-    private Status status;
+    private PropertyStatus status;
     private Object oldValue;
     private Object newValue;
 
@@ -15,7 +13,7 @@ public final class Property {
     }
 
 
-    public Status getStatus() {
+    public PropertyStatus getStatus() {
         return status;
     }
 
@@ -56,13 +54,13 @@ public final class Property {
 
         private void setPropertyStatus() {
             if (Objects.isNull(property.oldValue)) {
-                property.status = Status.ADDED;
+                property.status = PropertyStatus.ADDED;
             } else if (Objects.isNull(property.newValue)) {
-                property.status = Status.DELETED;
+                property.status = PropertyStatus.DELETED;
             } else if (property.oldValue.equals(property.newValue)) {
-                property.status = Status.UNCHANGED;
+                property.status = PropertyStatus.UNCHANGED;
             } else {
-                property.status = Status.UPDATED;
+                property.status = PropertyStatus.UPDATED;
             }
         }
     }

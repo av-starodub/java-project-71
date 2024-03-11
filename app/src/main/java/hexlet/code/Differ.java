@@ -3,7 +3,7 @@ package hexlet.code;
 import java.io.IOException;
 
 import hexlet.code.formatter.factory.FormatterFactory;
-import hexlet.code.list.SortedByNameListDiff;
+import hexlet.code.difference.list.SortedByNameListDiff;
 import hexlet.code.parser.Parser;
 
 public final class Differ {

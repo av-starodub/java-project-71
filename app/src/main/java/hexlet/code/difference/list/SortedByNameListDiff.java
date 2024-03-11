@@ -1,6 +1,6 @@
-package hexlet.code.list;
+package hexlet.code.difference.list;
 
-import hexlet.code.property.Property;
+import hexlet.code.difference.property.Property;
 
 import java.util.ArrayList;
 import java.util.Comparator;

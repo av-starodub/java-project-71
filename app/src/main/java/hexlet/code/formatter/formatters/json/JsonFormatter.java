@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import hexlet.code.formatter.Formatter;
-import hexlet.code.list.SortedByNameListDiff;
+import hexlet.code.difference.list.SortedByNameListDiff;
 import hexlet.code.serializer.ListDiffJsonSerializer;
 
 public final class JsonFormatter implements Formatter {

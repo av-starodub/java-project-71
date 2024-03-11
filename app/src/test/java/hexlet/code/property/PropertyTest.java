@@ -1,6 +1,7 @@
 package hexlet.code.property;
 
-import hexlet.code.status.Status;
+import hexlet.code.difference.property.Property;
+import hexlet.code.difference.property.PropertyStatus;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -15,7 +16,7 @@ public class PropertyTest {
                 .build();
         assertThat(property).isExactlyInstanceOf(Property.class);
         assertThat(property.getName()).isEqualTo("key");
-        assertThat(property.getStatus()).isEqualTo(Status.UPDATED);
+        assertThat(property.getStatus()).isEqualTo(PropertyStatus.UPDATED);
         assertThat(property.getOldValue()).isEqualTo("old");
         assertThat(property.getNewValue()).isEqualTo("new");
     }
@@ -27,7 +28,7 @@ public class PropertyTest {
                 .oldValue(null)
                 .newValue("new")
                 .build();
-        assertThat(property.getStatus()).isEqualTo(Status.ADDED);
+        assertThat(property.getStatus()).isEqualTo(PropertyStatus.ADDED);
     }
 
     @Test
@@ -37,7 +38,7 @@ public class PropertyTest {
                 .oldValue("old")
                 .newValue(null)
                 .build();
-        assertThat(property.getStatus()).isEqualTo(Status.DELETED);
+        assertThat(property.getStatus()).isEqualTo(PropertyStatus.DELETED);
     }
 
     @Test
@@ -47,6 +48,6 @@ public class PropertyTest {
                 .oldValue("old")
                 .newValue("old")
                 .build();
-        assertThat(property.getStatus()).isEqualTo(Status.UNCHANGED);
+        assertThat(property.getStatus()).isEqualTo(PropertyStatus.UNCHANGED);
     }
 }

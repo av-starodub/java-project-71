@@ -1,8 +1,8 @@
 package hexlet.code.formatter.formatters;
 
 import hexlet.code.formatter.Formatter;
-import hexlet.code.list.SortedByNameListDiff;
-import hexlet.code.property.Property;
+import hexlet.code.difference.list.SortedByNameListDiff;
+import hexlet.code.difference.property.Property;
 
 public abstract class AbstractFormatter implements Formatter {
     @Override
