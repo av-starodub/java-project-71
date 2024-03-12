@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +22,6 @@ public final class Parser {
             return new ObjectMapper().readValue(content, new TypeReference<HashMap<String, Object>>() {
             });
         }
-        throw new RemoteException();
+        throw new IllegalArgumentException("unsupported file extension " + dadaFormat);
     }
 }

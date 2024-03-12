@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.validator.InputValidator;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -31,7 +30,6 @@ public final class App implements Callable<Integer> {
     public Integer call() {
         try {
             var presentationFormat = Objects.isNull(format) ? "stylish" : format;
-            InputValidator.checkArgs(filePath1, filePath2, presentationFormat);
             showDifference(Differ.generate(filePath1, filePath2, presentationFormat));
         } catch (Throwable e) {
             System.err.println(e.getMessage());
