@@ -1,4 +1,4 @@
-package hexlet.code.difference.property;
+package hexlet.code.property;
 
 import java.util.Objects;
 

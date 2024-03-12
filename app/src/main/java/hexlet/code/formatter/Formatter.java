@@ -1,7 +1,9 @@
 package hexlet.code.formatter;
 
-import hexlet.code.difference.list.SortedByNameListDiff;
+import hexlet.code.property.Property;
+
+import java.util.List;
 
 public interface Formatter {
-    String format(SortedByNameListDiff listDiff);
+    String format(List<Property> listDiff);
 }

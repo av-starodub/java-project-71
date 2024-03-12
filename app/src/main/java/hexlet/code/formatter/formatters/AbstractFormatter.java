@@ -1,15 +1,16 @@
 package hexlet.code.formatter.formatters;
 
 import hexlet.code.formatter.Formatter;
-import hexlet.code.difference.list.SortedByNameListDiff;
-import hexlet.code.difference.property.Property;
+import hexlet.code.property.Property;
+
+import java.util.List;
 
 public abstract class AbstractFormatter implements Formatter {
     @Override
-    public final String format(SortedByNameListDiff listDiff) {
+    public final String format(List<Property> listDiff) {
         var sb = new StringBuilder();
         sb.append(doStart());
-        for (var prop : listDiff.getAll()) {
+        for (var prop : listDiff) {
             switch (prop.getStatus()) {
                 case ADDED -> sb.append(setAdded(prop));
                 case DELETED -> sb.append(setDeleted(prop));

@@ -2,18 +2,15 @@ package hexlet.code.formatter.formatters.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import hexlet.code.formatter.Formatter;
-import hexlet.code.difference.list.SortedByNameListDiff;
-import hexlet.code.serializer.ListDiffJsonSerializer;
+import hexlet.code.property.Property;
+
+import java.util.List;
 
 public final class JsonFormatter implements Formatter {
     @Override
-    public String format(SortedByNameListDiff listDiff) {
+    public String format(List<Property> listDiff) {
         ObjectMapper mapper = new ObjectMapper();
-        SimpleModule module = new SimpleModule();
-        module.addSerializer(SortedByNameListDiff.class, new ListDiffJsonSerializer());
-        mapper.registerModule(module);
         try {
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listDiff);
         } catch (JsonProcessingException e) {

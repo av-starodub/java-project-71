@@ -3,7 +3,6 @@ package hexlet.code;
 import java.io.IOException;
 
 import hexlet.code.formatter.factory.FormatterFactory;
-import hexlet.code.difference.list.SortedByNameListDiff;
 import hexlet.code.parser.Parser;
 
 public final class Differ {
@@ -18,7 +17,7 @@ public final class Differ {
         var formatter = FormatterFactory.create(presentationFormat);
         var data1 = Parser.parseToMap(filePath1);
         var data2 =  Parser.parseToMap(filePath2);
-        var listDifference = SortedByNameListDiff.create(data1, data2);
+        var listDifference = SortedByNameListDiff.computeDifference(data1, data2);
 
         return formatter.format(listDifference);
     }

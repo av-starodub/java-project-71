@@ -1,7 +1,5 @@
 package hexlet.code.property;
 
-import hexlet.code.difference.property.Property;
-import hexlet.code.difference.property.PropertyStatus;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;

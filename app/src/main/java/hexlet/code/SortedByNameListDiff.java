@@ -1,6 +1,6 @@
-package hexlet.code.difference.list;
+package hexlet.code;
 
-import hexlet.code.difference.property.Property;
+import hexlet.code.property.Property;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,13 +11,11 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public final class SortedByNameListDiff {
-    private final List<Property> listDiff;
 
-    private SortedByNameListDiff(List<Property> sortedProperties) {
-        this.listDiff = sortedProperties;
+    private SortedByNameListDiff() {
     }
 
-    public static SortedByNameListDiff create(Map<String, Object> data1, Map<String, Object> data2) {
+    public static List<Property> computeDifference(Map<String, Object> data1, Map<String, Object> data2) {
         var sortedProperties = new ArrayList<Property>();
         getAllSortedUniqueKeys(Objects.requireNonNull(data1), Objects.requireNonNull(data2)).forEach(key ->
                 sortedProperties.add(Property.builder()
@@ -27,11 +25,7 @@ public final class SortedByNameListDiff {
                         .build()
                 )
         );
-        return new SortedByNameListDiff(sortedProperties);
-    }
-
-    public List<Property> getAll() {
-        return List.copyOf(listDiff);
+        return sortedProperties;
     }
 
     private static Set<String> getAllSortedUniqueKeys(Map<String, Object> data1, Map<String, Object> data2) {
