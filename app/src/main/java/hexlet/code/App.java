@@ -34,7 +34,7 @@ public final class App implements Callable<Integer> {
             InputValidator.checkArgs(filePath1, filePath2, presentationFormat);
             showDifference(Differ.generate(filePath1, filePath2, presentationFormat));
         } catch (Throwable e) {
-            printExceptionInfo(e);
+            System.err.println(e.getMessage());
             return EXCEPTION_EXIT_CODE;
         }
         return SUCCESS_EXIT_CODE;
@@ -42,9 +42,5 @@ public final class App implements Callable<Integer> {
 
     private static void showDifference(String diff) {
         System.out.println(diff);
-    }
-
-    private static void printExceptionInfo(Throwable e) {
-        System.out.printf("%s: %s%n%s%n", e.getClass(), e.getMessage(), e.getStackTrace()[0]);
     }
 }
