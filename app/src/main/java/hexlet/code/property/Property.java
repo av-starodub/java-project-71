@@ -1,6 +1,10 @@
 package hexlet.code.property;
 
-import java.util.Objects;
+import static hexlet.code.property.PropertyStatus.ADDED;
+import static hexlet.code.property.PropertyStatus.UPDATED;
+import static hexlet.code.property.PropertyStatus.UNCHANGED;
+import static hexlet.code.property.PropertyStatus.DELETED;
+import static java.util.Objects.isNull;
 
 public final class Property {
     private String name;
@@ -55,14 +59,14 @@ public final class Property {
         }
 
         private void setPropertyStatus() {
-            if (Objects.isNull(property.oldValue)) {
-                property.status = PropertyStatus.ADDED;
-            } else if (Objects.isNull(property.newValue)) {
-                property.status = PropertyStatus.DELETED;
+            if (isNull(property.oldValue)) {
+                property.status = ADDED;
+            } else if (isNull(property.newValue)) {
+                property.status = DELETED;
             } else if (property.oldValue.equals(property.newValue)) {
-                property.status = PropertyStatus.UNCHANGED;
+                property.status = UNCHANGED;
             } else {
-                property.status = PropertyStatus.UPDATED;
+                property.status = UPDATED;
             }
         }
     }
