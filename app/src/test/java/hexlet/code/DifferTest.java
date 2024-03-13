@@ -2,8 +2,6 @@ package hexlet.code;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public final class DifferTest {
@@ -13,7 +11,7 @@ public final class DifferTest {
     }
 
     @Test
-    void shouldCorrectlyGenerateTheDifferenceInStylishFormat() throws IOException {
+    void shouldCorrectlyGenerateTheDifferenceInStylishFormat() throws Exception {
         var expectedStylish = """
                 {
                     chars1: [a, b, c]
@@ -49,7 +47,7 @@ public final class DifferTest {
     }
 
     @Test
-    void shouldCorrectlyGenerateTheDifferenceInPlainFormat() throws IOException {
+    void shouldCorrectlyGenerateTheDifferenceInPlainFormat() throws Exception {
         var expectedPlain = """
                 Property 'chars2' was updated. From [complex value] to false
                 Property 'checked' was updated. From false to true
@@ -72,7 +70,7 @@ public final class DifferTest {
     }
 
     @Test
-    void shouldCorrectlyGenerateTheDifferenceInJsonFormat() throws IOException {
+    void shouldCorrectlyGenerateTheDifferenceInJsonFormat() throws Exception {
         var expectedJson = """
                 {
                   "chars1" : {

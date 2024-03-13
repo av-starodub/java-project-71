@@ -1,6 +1,5 @@
 package hexlet.code.formatter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hexlet.code.property.Property;
 
@@ -11,7 +10,7 @@ import java.util.Map;
 
 public final class JsonFormatter implements Formatter {
     @Override
-    public String format(List<Property> listDiff) throws JsonProcessingException {
+    public String format(List<Property> listDiff) throws Exception {
         var mapper = new ObjectMapper();
         var data = build(listDiff);
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(data);
