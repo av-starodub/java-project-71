@@ -22,6 +22,6 @@ public final class Parser {
             return new ObjectMapper().readValue(content, new TypeReference<HashMap<String, Object>>() {
             });
         }
-        throw new IllegalArgumentException("unsupported file extension " + dadaFormat);
+        throw new IllegalArgumentException("Unsupported file extension : %s!".formatted(dadaFormat));
     }
 }
