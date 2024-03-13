@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import hexlet.code.formatter.factory.FormatterFactory;
+import hexlet.code.formatter.FormatterFactory;
 import hexlet.code.parser.Parser;
 
 public final class Differ {

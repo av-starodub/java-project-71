@@ -1,8 +1,7 @@
-package hexlet.code.formatter.formatters.json;
+package hexlet.code.formatter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hexlet.code.formatter.Formatter;
 import hexlet.code.property.Property;
 
 import java.util.AbstractMap;

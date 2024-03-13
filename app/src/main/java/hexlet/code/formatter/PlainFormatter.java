@@ -1,6 +1,5 @@
-package hexlet.code.formatter.formatters.plain;
+package hexlet.code.formatter;
 
-import hexlet.code.formatter.formatters.AbstractFormatter;
 import hexlet.code.property.Property;
 
 import java.util.List;

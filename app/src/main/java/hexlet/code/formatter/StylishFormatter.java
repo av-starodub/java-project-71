@@ -1,6 +1,5 @@
-package hexlet.code.formatter.formatters.stylish;
+package hexlet.code.formatter;
 
-import hexlet.code.formatter.formatters.AbstractFormatter;
 import hexlet.code.property.Property;
 
 public final class StylishFormatter extends AbstractFormatter {
