@@ -36,7 +36,7 @@ public final class JsonFormatter implements Formatter {
                 data.put("file1", property.getOldValue().toString());
                 data.put("file2", property.getNewValue().toString());
             }
-            default -> throw new UnsupportedOperationException("Invalid parameter status: '%s'!".formatted(status));
+            default -> throw new IllegalStateException("Invalid property status: '%s'!".formatted(status));
         }
         return new AbstractMap.SimpleEntry<>(property.getName(), data);
     }

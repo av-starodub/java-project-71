@@ -5,51 +5,32 @@ import hexlet.code.property.Property;
 import java.util.List;
 import java.util.Map;
 
-public final class PlainFormatter extends AbstractFormatter {
-
+public final class PlainFormatter implements Formatter {
     @Override
-    protected String doStart() {
-        return "";
+    public String format(List<Property> listDiff) {
+        var sb = new StringBuilder();
+        for (var prop : listDiff) {
+            var status = prop.getStatus();
+            switch (status) {
+                case ADDED -> sb.append("Property '%s' was added with value: %s\n"
+                        .formatted(prop.getName(), formatValue(prop.getNewValue()))
+                );
+                case UPDATED -> sb.append("Property '%s' was updated. From %s to %s\n"
+                        .formatted(prop.getName(), formatValue(prop.getOldValue()), formatValue(prop.getNewValue()))
+                );
+                case DELETED -> sb.append("Property '%s' was removed\n".formatted(prop.getName()));
+                case UNCHANGED -> {
+                }
+                default -> throw new IllegalStateException("Invalid property status: '%s'!".formatted(status));
+            }
+        }
+        return sb.substring(0, sb.length() - 1);
     }
 
-    @Override
-    protected String doEnd() {
-        return "";
-    }
-
-    @Override
-    protected String setAdded(Property prop) {
-        return String.format(
-                "Property '%s' was added with value: %s\n",
-                prop.getName(),
-                checkComplexValue(prop.getNewValue())
-        );
-    }
-
-    @Override
-    protected String setDeleted(Property prop) {
-        return String.format("Property '%s' was removed\n", prop.getName());
-    }
-
-    @Override
-    protected String setUnchanged(Property prop) {
-        return "";
-    }
-
-    @Override
-    protected String setUpdated(Property prop) {
-        return String.format(
-                "Property '%s' was updated. From %s to %s\n",
-                prop.getName(),
-                checkComplexValue(prop.getOldValue()),
-                checkComplexValue(prop.getNewValue())
-        );
-    }
-
-    private Object checkComplexValue(Object value) {
+    private String formatValue(Object value) {
         if (value instanceof String && !"null".equals(value)) {
             return String.format("'%s'", value);
         }
-        return value instanceof List<?> || value instanceof Map<?, ?> ? "[complex value]" : value;
+        return value instanceof List<?> || value instanceof Map<?, ?> ? "[complex value]" : value.toString();
     }
 }
