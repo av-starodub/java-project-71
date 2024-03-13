@@ -41,11 +41,11 @@ public final class DifferTest {
                   + setting3: none
                 }""";
 
-        String actual = Differ.generate(
+        String actualStylish = Differ.generate(
 
                 AppTest.createPath(AppTest.ABSOLUTE_PATH, "json1.json"),
                 AppTest.createPath(AppTest.RELATIVE_PATH, "json2.json"));
-        assertThat(actual).isEqualTo(expectedStylish);
+        assertThat(actualStylish).isEqualTo(expectedStylish);
     }
 
     @Test
@@ -64,16 +64,16 @@ public final class DifferTest {
                 Property 'setting1' was updated. From 'Some value' to 'Another value'
                 Property 'setting2' was updated. From 200 to 300
                 Property 'setting3' was updated. From true to 'none'""";
-        String actual = Differ.generate(
+        String actualPlain = Differ.generate(
                 AppTest.createPath(AppTest.RELATIVE_PATH, "yaml1.yml"),
                 AppTest.createPath(AppTest.ABSOLUTE_PATH, "yaml2.yml"),
                 "plain");
-        assertThat(actual).isEqualTo(expectedPlain);
+        assertThat(actualPlain).isEqualTo(expectedPlain);
     }
 
     @Test
     void shouldCorrectlyGenerateTheDifferenceInJsonFormat() throws IOException {
-        var expectedPlain = """
+        var expectedJson = """
                 {
                   "chars1" : {
                     "Status" : "UNCHANGED",
@@ -144,10 +144,10 @@ public final class DifferTest {
                     "file2" : "none"
                   }
                 }""";
-        String actual = Differ.generate(
+        String actualJson = Differ.generate(
                 AppTest.createPath(AppTest.RELATIVE_PATH, "yaml1.yml"),
                 AppTest.createPath(AppTest.ABSOLUTE_PATH, "yaml2.yml"),
                 "json");
-        assertThat(actual).isEqualTo(expectedPlain);
+        assertThat(actualJson).isEqualTo(expectedJson);
     }
 }
