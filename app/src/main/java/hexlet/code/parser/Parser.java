@@ -13,15 +13,16 @@ public final class Parser {
     }
 
     public static Map<String, Object> parseToMap(String content, String dadaFormat) throws IOException {
-        if ("yml".equals(dadaFormat)) {
-            return new YAMLMapper().readValue(content, new TypeReference<HashMap<String, Object>>() {
-            });
+        switch (dadaFormat) {
+            case "yml" -> {
+                return new YAMLMapper().readValue(content, new TypeReference<HashMap<String, Object>>() {
+                });
+            }
+            case "json" -> {
+                return new ObjectMapper().readValue(content, new TypeReference<HashMap<String, Object>>() {
+                });
+            }
+            default -> throw new IllegalArgumentException("Unsupported dadaFormat : %s!".formatted(dadaFormat));
         }
-        if ("json".equals(dadaFormat)) {
-
-            return new ObjectMapper().readValue(content, new TypeReference<HashMap<String, Object>>() {
-            });
-        }
-        throw new IllegalArgumentException("Unsupported file extension : %s!".formatted(dadaFormat));
     }
 }

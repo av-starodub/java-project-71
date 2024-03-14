@@ -5,15 +5,19 @@ public final class FormatterFactory {
     }
 
     public static Formatter create(String presentationFormat) {
-        if ("stylish".equals(presentationFormat)) {
-            return new StylishFormatter();
+        switch (presentationFormat) {
+            case "stylish" -> {
+                return new StylishFormatter();
+            }
+            case "plain" -> {
+                return new PlainFormatter();
+            }
+            case "json" -> {
+                return new JsonFormatter();
+            }
+            default -> throw new IllegalArgumentException(
+                    "Invalid presentationFormat: '%s'!".formatted(presentationFormat)
+            );
         }
-        if ("plain".equals(presentationFormat)) {
-            return new PlainFormatter();
-        }
-        if ("json".equals(presentationFormat)) {
-            return new JsonFormatter();
-        }
-        throw new IllegalArgumentException("Invalid presentationFormat: '%s'!".formatted(presentationFormat));
     }
 }
