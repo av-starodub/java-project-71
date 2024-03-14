@@ -2,6 +2,9 @@ package hexlet.code;
 
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public final class DifferTest {
@@ -71,77 +74,8 @@ public final class DifferTest {
 
     @Test
     void shouldCorrectlyGenerateTheDifferenceInJsonFormat() throws Exception {
-        var expectedJson = """
-                {
-                  "chars1" : {
-                    "Status" : "UNCHANGED",
-                    "file1" : "[a, b, c]"
-                  },
-                  "chars2" : {
-                    "Status" : "UPDATED",
-                    "file1" : "[d, e, f]",
-                    "file2" : "false"
-                  },
-                  "checked" : {
-                    "Status" : "UPDATED",
-                    "file1" : "false",
-                    "file2" : "true"
-                  },
-                  "default" : {
-                    "Status" : "UPDATED",
-                    "file1" : "null",
-                    "file2" : "[value1, value2]"
-                  },
-                  "id" : {
-                    "Status" : "UPDATED",
-                    "file1" : "45",
-                    "file2" : "null"
-                  },
-                  "key1" : {
-                    "Status" : "DELETED",
-                    "file1" : "value1"
-                  },
-                  "key2" : {
-                    "Status" : "ADDED",
-                    "file2" : "value2"
-                  },
-                  "numbers1" : {
-                    "Status" : "UNCHANGED",
-                    "file1" : "[1, 2, 3, 4]"
-                  },
-                  "numbers2" : {
-                    "Status" : "UPDATED",
-                    "file1" : "[2, 3, 4, 5]",
-                    "file2" : "[22, 33, 44, 55]"
-                  },
-                  "numbers3" : {
-                    "Status" : "DELETED",
-                    "file1" : "[3, 4, 5]"
-                  },
-                  "numbers4" : {
-                    "Status" : "ADDED",
-                    "file2" : "[4, 5, 6]"
-                  },
-                  "obj1" : {
-                    "Status" : "ADDED",
-                    "file2" : "{nestedKey=value, isNested=true}"
-                  },
-                  "setting1" : {
-                    "Status" : "UPDATED",
-                    "file1" : "Some value",
-                    "file2" : "Another value"
-                  },
-                  "setting2" : {
-                    "Status" : "UPDATED",
-                    "file1" : "200",
-                    "file2" : "300"
-                  },
-                  "setting3" : {
-                    "Status" : "UPDATED",
-                    "file1" : "true",
-                    "file2" : "none"
-                  }
-                }""";
+        var filePath =  AppTest.createPath(AppTest.RELATIVE_PATH, "expected_json_diff.json");
+        var expectedJson = Files.readString(Paths.get(filePath).toAbsolutePath().normalize());
         String actualJson = Differ.generate(
                 AppTest.createPath(AppTest.RELATIVE_PATH, "yaml1.yml"),
                 AppTest.createPath(AppTest.ABSOLUTE_PATH, "yaml2.yml"),

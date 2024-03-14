@@ -1,9 +1,12 @@
 package hexlet.code.formatter;
 
-import hexlet.code.property.Property;
+import hexlet.code.type.ReportType;
 
-import java.util.List;
+import java.util.EnumMap;
+import java.util.Map;
 
 public interface Formatter {
-    String format(List<Property> listDiff) throws Exception;
+
+    String format(Map<String, EnumMap<ReportType, Object>> listDiff) throws Exception;
+
 }
