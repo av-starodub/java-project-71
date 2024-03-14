@@ -10,12 +10,12 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
-public final class SortedByNameListDiff {
+public final class DiffBuilder {
 
-    private SortedByNameListDiff() {
+    private DiffBuilder() {
     }
 
-    public static List<Property> computeDifference(Map<String, Object> data1, Map<String, Object> data2) {
+    public static List<Property> build(Map<String, Object> data1, Map<String, Object> data2) {
         var sortedProperties = new ArrayList<Property>();
         getAllSortedUniqueKeys(Objects.requireNonNull(data1), Objects.requireNonNull(data2)).forEach(key ->
                 sortedProperties.add(Property.builder()
