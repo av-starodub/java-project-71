@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface Formatter {
 
-    String format(Map<String, EnumMap<ReportType, Object>> listDiff) throws Exception;
+    String format(Map<String, EnumMap<ReportType, Object>> mapDiff) throws Exception;
 
 }

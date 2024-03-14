@@ -15,10 +15,10 @@ public final class StylishFormatter implements Formatter {
     private static final String TEMPLATE = "  %s %s: %s\n";
 
     @Override
-    public String format(Map<String, EnumMap<ReportType, Object>> listDiff) {
+    public String format(Map<String, EnumMap<ReportType, Object>> mapDiff) {
         var sb = new StringBuilder();
         sb.append("{\n");
-        for (var entry : listDiff.entrySet()) {
+        for (var entry : mapDiff.entrySet()) {
             var key = entry.getKey();
             var report = entry.getValue();
             var status = (StatusType) report.get(STATUS);

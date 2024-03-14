@@ -14,9 +14,9 @@ import static hexlet.code.type.ReportType.STATUS;
 
 public final class PlainFormatter implements Formatter {
     @Override
-    public String format(Map<String, EnumMap<ReportType, Object>> listDiff) {
+    public String format(Map<String, EnumMap<ReportType, Object>> mapDiff) {
         var sb = new StringBuilder();
-        for (var entry : listDiff.entrySet()) {
+        for (var entry : mapDiff.entrySet()) {
             var key = entry.getKey();
             var report = entry.getValue();
             var status = (StatusType) report.get(STATUS);
@@ -35,6 +35,7 @@ public final class PlainFormatter implements Formatter {
         }
         return sb.substring(0, sb.length() - 1);
     }
+
     private String formatValue(Object value) {
         if (value instanceof String) {
             return String.format("'%s'", value);

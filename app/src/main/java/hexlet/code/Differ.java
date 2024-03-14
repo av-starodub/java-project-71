@@ -19,9 +19,9 @@ public final class Differ {
         var formatter = FormatterFactory.create(presentationFormat);
         var data1 = Parser.parseToMap(getContent(filePath1), getDataFormat(filePath1));
         var data2 = Parser.parseToMap(getContent(filePath2), getDataFormat(filePath2));
-        var listDifference = DiffBuilder.build(data1, data2);
+        var mapDifference = DiffBuilder.build(data1, data2);
 
-        return formatter.format(listDifference);
+        return formatter.format(mapDifference);
     }
 
     private static String getContent(String filePath) throws IOException {

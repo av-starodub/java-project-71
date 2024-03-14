@@ -24,7 +24,7 @@ public final class DiffBuilder {
     }
 
     public static Map<String, EnumMap<ReportType, Object>> build(Map<String, Object> data1, Map<String, Object> data2) {
-        var properties = new LinkedHashMap<String, EnumMap<ReportType, Object>>();
+        var sortedByNameMapDiff = new LinkedHashMap<String, EnumMap<ReportType, Object>>();
         var keys = new TreeSet<String>(Comparator.naturalOrder());
         keys.addAll(data1.keySet());
         keys.addAll(data2.keySet());
@@ -46,8 +46,8 @@ public final class DiffBuilder {
                 report.put(OLD_VALUE, oldValue);
                 report.put(NEW_VALUE, newValue);
             }
-            properties.put(key, report);
+            sortedByNameMapDiff.put(key, report);
         }
-        return properties;
+        return sortedByNameMapDiff;
     }
 }

@@ -8,8 +8,8 @@ import java.util.Map;
 
 public final class JsonFormatter implements Formatter {
     @Override
-    public String format(Map<String, EnumMap<ReportType, Object>> listDiff) throws Exception {
+    public String format(Map<String, EnumMap<ReportType, Object>> mapDiff) throws Exception {
         var mapper = new ObjectMapper();
-        return mapper.writeValueAsString(listDiff);
+        return mapper.writeValueAsString(mapDiff);
     }
 }
