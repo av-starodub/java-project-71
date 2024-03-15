@@ -13,6 +13,7 @@ import java.util.concurrent.Callable;
 public final class App implements Callable<Integer> {
     private static final int SUCCESS_EXIT_CODE = 0;
     private static final int EXCEPTION_EXIT_CODE = 1;
+
     @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
     private String format;
 
@@ -30,15 +31,12 @@ public final class App implements Callable<Integer> {
     public Integer call() {
         try {
             var presentationFormat = Objects.isNull(format) ? "stylish" : format;
-            showDifference(Differ.generate(filePath1, filePath2, presentationFormat));
+            var report = Differ.generate(filePath1, filePath2, presentationFormat);
+            System.out.println(report);
         } catch (Throwable e) {
             System.err.println(e.getMessage());
             return EXCEPTION_EXIT_CODE;
         }
         return SUCCESS_EXIT_CODE;
-    }
-
-    private static void showDifference(String diff) {
-        System.out.println(diff);
     }
 }
