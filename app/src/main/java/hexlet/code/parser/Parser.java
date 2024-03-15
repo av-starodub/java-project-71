@@ -12,8 +12,8 @@ public final class Parser {
     private Parser() {
     }
 
-    public static Map<String, Object> parseToMap(String content, String dadaFormat) throws IOException {
-        switch (dadaFormat) {
+    public static Map<String, Object> extractToMap(String content, String dataFormat) throws IOException {
+        switch (dataFormat) {
             case "yml" -> {
                 return new YAMLMapper().readValue(content, new TypeReference<HashMap<String, Object>>() {
                 });
@@ -22,7 +22,7 @@ public final class Parser {
                 return new ObjectMapper().readValue(content, new TypeReference<HashMap<String, Object>>() {
                 });
             }
-            default -> throw new IllegalArgumentException("Unsupported dadaFormat : %s!".formatted(dadaFormat));
+            default -> throw new IllegalArgumentException("Unsupported data format : %s!".formatted(dataFormat));
         }
     }
 }

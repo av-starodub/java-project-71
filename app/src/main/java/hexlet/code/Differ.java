@@ -17,8 +17,8 @@ public final class Differ {
 
     public static String generate(String filePath1, String filePath2, String presentationFormat) throws Exception {
         var formatter = FormatterFactory.create(presentationFormat);
-        var data1 = Parser.parseToMap(getContent(filePath1), getDataFormat(filePath1));
-        var data2 = Parser.parseToMap(getContent(filePath2), getDataFormat(filePath2));
+        var data1 = Parser.extractToMap(getContent(filePath1), getDataFormat(filePath1));
+        var data2 = Parser.extractToMap(getContent(filePath2), getDataFormat(filePath2));
         var mapDifference = DiffBuilder.build(data1, data2);
 
         return formatter.format(mapDifference);

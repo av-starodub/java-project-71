@@ -7,6 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 public class ParserTest {
     @Test
     void shouldThrowWhenDataFormatIsInvalid() {
-        assertThrowsExactly(IllegalArgumentException.class, () -> Parser.parseToMap("content", ""));
+        assertThrowsExactly(IllegalArgumentException.class, () -> Parser.extractToMap("content", ""));
     }
 }
