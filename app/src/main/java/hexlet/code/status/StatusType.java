@@ -1,4 +1,4 @@
-package hexlet.code.type;
+package hexlet.code.status;
 
 public enum StatusType {
     ADDED,

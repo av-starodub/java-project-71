@@ -1,12 +1,11 @@
 package hexlet.code.formatter;
 
-import hexlet.code.type.ReportType;
+import hexlet.code.status.Status;
 
-import java.util.EnumMap;
 import java.util.Map;
 
 public interface Formatter {
 
-    String format(Map<String, EnumMap<ReportType, Object>> mapDiff) throws Exception;
+    String format(Map<String, Status> mapDiff) throws Exception;
 
 }
