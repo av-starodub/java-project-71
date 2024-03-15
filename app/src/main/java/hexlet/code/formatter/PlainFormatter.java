@@ -37,6 +37,6 @@ public final class PlainFormatter implements Formatter {
         if (value instanceof Collection<?> || value instanceof Map<?, ?>) {
             return "[complex value]";
         }
-        return Objects.isNull(value) ? null : value.toString();
+        return Objects.isNull(value) ? "null" : value.toString();
     }
 }
