@@ -60,7 +60,7 @@ Property 'numbers2' was updated. From [complex value] to [complex value]
 Property 'numbers3' was removed
 ~~~
 * ##### Генерация отчета в формате 'json'
-  [Пример использования](https://asciinema.org/a/uOe78RfFytGsNwOXBvJtZj0NL)
+  [Пример использования](https://asciinema.org/a/l1hQ3LLc4NEzwityQoK8r2Gp6)
 ~~~
 make json filePath1 filePath2
 ~~~
