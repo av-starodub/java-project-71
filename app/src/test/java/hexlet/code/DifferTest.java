@@ -1,85 +1,110 @@
 package hexlet.code;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 public final class DifferTest {
+    public static final String JSON_FILE_PATH_1 = getFixturesPath("data_json_1.json").toString();
+    public static final String JSON_FILE_PATH_2 = getFixturesPath("data_json_2.json").toString();
+    public static final String YAML_FILE_PATH_1 = getFixturesPath("data_yaml_1.yml").toString();
+    public static final String YAML_FILE_PATH_2 = getFixturesPath("data_yaml_2.yml").toString();
+
+    private static String resultJson;
+    private static String resultPlain;
+    private static String resultStylish;
+
+    private static Path getFixturesPath(String fileName) {
+        return Paths.get("src", "test", "resources", "fixtures", fileName).toAbsolutePath().normalize();
+    }
+
+    private static String readFixture(String fileName) throws IOException {
+        var filePath = getFixturesPath(fileName);
+        return Files.readString(filePath).strip();
+    }
+
+    @BeforeAll
+    static void setUp() throws IOException {
+        resultJson = readFixture("report_json.json");
+        resultPlain = readFixture("report_plain.txt");
+        resultStylish = readFixture("report_stylish.txt");
+    }
+
     @Test
     void isDifferClassExist() {
         assertThat(Differ.class).isNotNull();
     }
 
     @Test
-    void shouldCorrectlyGenerateTheDifferenceInStylishFormat() throws Exception {
-        var expectedStylish = """
-                {
-                    chars1: [a, b, c]
-                  - chars2: [d, e, f]
-                  + chars2: false
-                  - checked: false
-                  + checked: true
-                  - default: null
-                  + default: [value1, value2]
-                  - id: 45
-                  + id: null
-                  - key1: value1
-                  + key2: value2
-                    numbers1: [1, 2, 3, 4]
-                  - numbers2: [2, 3, 4, 5]
-                  + numbers2: [22, 33, 44, 55]
-                  - numbers3: [3, 4, 5]
-                  + numbers4: [4, 5, 6]
-                  + obj1: {nestedKey=value, isNested=true}
-                  - setting1: Some value
-                  + setting1: Another value
-                  - setting2: 200
-                  + setting2: 300
-                  - setting3: true
-                  + setting3: none
-                }""";
-
-        String actualStylish = Differ.generate(
-
-                AppTest.createPath(AppTest.ABSOLUTE_PATH, "json1.json"),
-                AppTest.createPath(AppTest.RELATIVE_PATH, "json2.json"));
-        assertThat(actualStylish).isEqualTo(expectedStylish);
+    void checkJsonDataToDefaultReport() throws Exception {
+        var actualStylishReport = Differ.generate(JSON_FILE_PATH_1, JSON_FILE_PATH_2);
+        assertThat(actualStylishReport).isEqualTo(resultStylish);
     }
 
     @Test
-    void shouldCorrectlyGenerateTheDifferenceInPlainFormat() throws Exception {
-        var expectedPlain = """
-                Property 'chars2' was updated. From [complex value] to false
-                Property 'checked' was updated. From false to true
-                Property 'default' was updated. From null to [complex value]
-                Property 'id' was updated. From 45 to null
-                Property 'key1' was removed
-                Property 'key2' was added with value: 'value2'
-                Property 'numbers2' was updated. From [complex value] to [complex value]
-                Property 'numbers3' was removed
-                Property 'numbers4' was added with value: [complex value]
-                Property 'obj1' was added with value: [complex value]
-                Property 'setting1' was updated. From 'Some value' to 'Another value'
-                Property 'setting2' was updated. From 200 to 300
-                Property 'setting3' was updated. From true to 'none'""";
-        String actualPlain = Differ.generate(
-                AppTest.createPath(AppTest.RELATIVE_PATH, "yaml1.yml"),
-                AppTest.createPath(AppTest.ABSOLUTE_PATH, "yaml2.yml"),
-                "plain");
-        assertThat(actualPlain).isEqualTo(expectedPlain);
+    void checkJsonDataToStylishReport() throws Exception {
+        var actualStylishReport = Differ.generate(JSON_FILE_PATH_1, JSON_FILE_PATH_2, "stylish");
+        assertThat(actualStylishReport).isEqualTo(resultStylish);
     }
 
     @Test
-    void shouldCorrectlyGenerateTheDifferenceInJsonFormat() throws Exception {
-        var filePath =  AppTest.createPath(AppTest.RELATIVE_PATH, "expected_json_diff.json");
-        var expectedJson = Files.readString(Paths.get(filePath).toAbsolutePath().normalize());
-        String actualJson = Differ.generate(
-                AppTest.createPath(AppTest.RELATIVE_PATH, "yaml1.yml"),
-                AppTest.createPath(AppTest.ABSOLUTE_PATH, "yaml2.yml"),
-                "json");
-        assertThat(actualJson).isEqualTo(expectedJson);
+    void checkJsonDataToPlainReport() throws Exception {
+        var actualPlainReport = Differ.generate(JSON_FILE_PATH_1, JSON_FILE_PATH_2, "plain");
+        assertThat(actualPlainReport).isEqualTo(resultPlain);
+    }
+
+    @Test
+    void checkJsonDataToJsonReport() throws Exception {
+        var actualJsonReport = Differ.generate(JSON_FILE_PATH_1, JSON_FILE_PATH_2, "json");
+        assertThat(actualJsonReport).isEqualTo(resultJson);
+    }
+
+    @Test
+    void checkYamlDataToDefaultReport() throws Exception {
+        var actualStylishReport = Differ.generate(YAML_FILE_PATH_1, YAML_FILE_PATH_2);
+        assertThat(actualStylishReport).isEqualTo(resultStylish);
+    }
+
+    @Test
+    void checkYamlDataToStylishReport() throws Exception {
+        var actualStylishReport = Differ.generate(YAML_FILE_PATH_1, YAML_FILE_PATH_2, "stylish");
+        assertThat(actualStylishReport).isEqualTo(resultStylish);
+    }
+
+    @Test
+    void checkYamlDataToPlainReport() throws Exception {
+        String actualPlainReport = Differ.generate(YAML_FILE_PATH_1, YAML_FILE_PATH_2, "plain");
+        assertThat(actualPlainReport).isEqualTo(resultPlain);
+    }
+
+    @Test
+    void checkYamlDataToJsonReport() throws Exception {
+        var actualJsonReport = Differ.generate(YAML_FILE_PATH_1, YAML_FILE_PATH_2, "json");
+        assertThat(actualJsonReport).isEqualTo(resultJson);
+    }
+
+    @Test
+    void checkThrownWhenDataFormatNotSupported() {
+        var unsupportedDataFilePath = getFixturesPath("report_stylish.txt").toString();
+        var exception = assertThrowsExactly(
+                IllegalArgumentException.class, () -> Differ.generate(YAML_FILE_PATH_1, unsupportedDataFilePath)
+        );
+        assertEquals(exception.getMessage(), "Unsupported data format : txt!");
+    }
+
+    @Test
+    void checkThrownWhenPresentationFormatNotSupported() {
+        var exception = assertThrowsExactly(
+                IllegalArgumentException.class, () -> Differ.generate(YAML_FILE_PATH_1, YAML_FILE_PATH_2, "svg")
+        );
+        assertEquals(exception.getMessage(), "Unsupported presentation format : svg!");
     }
 }

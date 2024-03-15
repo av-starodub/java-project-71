@@ -16,7 +16,7 @@ public final class FormatterFactory {
                 return new JsonFormatter();
             }
             default -> throw new IllegalArgumentException(
-                    "Invalid presentationFormat: '%s'!".formatted(presentationFormat)
+                    "Unsupported presentation format : %s!".formatted(presentationFormat)
             );
         }
     }
